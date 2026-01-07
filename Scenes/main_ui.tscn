@@ -1,10 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://c10p7mb66d7jt"]
+[gd_scene load_steps=14 format=3 uid="uid://c10p7mb66d7jt"]
 
-[ext_resource type="Script" uid="uid://dq3q4peg7nrxx" path="res://Scenes/main_ui.gd" id="1_gmh8u"]
+[ext_resource type="Script" uid="uid://dq3q4peg7nrxx" path="res://Scripts/main_ui.gd" id="1_gmh8u"]
 [ext_resource type="Texture2D" uid="uid://bqiipxpefhwsv" path="res://ui_elements/play_button.png" id="2_dcbcb"]
 [ext_resource type="Texture2D" uid="uid://6m54ubiml20k" path="res://ui_elements/setting_button.png" id="3_tbbry"]
 [ext_resource type="Texture2D" uid="uid://cxng8asqv7th3" path="res://ui_elements/quit_button.png" id="4_7okpu"]
-[ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/Rollin at 5 - Kevin Macleod.mp3" id="5_tbbry"]
+[ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3" id="5_tbbry"]
+[ext_resource type="Texture2D" uid="uid://bt2nlqinsssdx" path="res://ui_elements/main_ui bakground.png" id="6_7okpu"]
+[ext_resource type="AudioStream" uid="uid://6b81x00ntvsi" path="res://ui_elements/ui_sound_effects/keyboard-click-327728.mp3" id="6_bhqku"]
+[ext_resource type="FontFile" uid="uid://bfsj06b3qg32w" path="res://ui_elements/fonts/Mind Boggle DEMO.otf" id="7_ylo01"]
+[ext_resource type="Texture2D" uid="uid://dybya8byq37o0" path="res://ui_elements/back button.png" id="9_qnjnk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pumb7"]
+bg_color = Color(0.5659114, 0.110706784, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnjnk"]
+bg_color = Color(0.5659114, 0.110706784, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j338"]
+bg_color = Color(0.5659114, 0.110706784, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8hf5"]
+bg_color = Color(0.5659114, 0.110706784, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="main_ui" type="Control"]
 layout_mode = 3
@@ -25,23 +57,18 @@ grow_vertical = 2
 color = Color(0.15231416, 0.12023606, 0.19902271, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 304.0
-offset_top = -324.0
-offset_right = 1840.0
-offset_bottom = 1906.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.28, 0.28)
-theme_override_constants/separation = -421
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 216.0
+offset_right = 2872.0
+offset_bottom = 2446.0
+scale = Vector2(0.26, 0.26)
+pivot_offset = Vector2(0.165, 0)
+theme_override_constants/separation = -381
 
 [node name="play_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_stretch_ratio = 0.0
 texture_normal = ExtResource("2_dcbcb")
 
 [node name="settings_button" type="TextureButton" parent="VBoxContainer"]
@@ -56,4 +83,120 @@ texture_normal = ExtResource("4_7okpu")
 stream = ExtResource("5_tbbry")
 parameters/looping = true
 
+[node name="click_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bhqku")
+volume_db = -15.035
+parameters/looping = false
+
+[node name="MainUiBakground" type="TextureRect" parent="."]
+visible = false
+texture_filter = 2
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 1329.0
+offset_bottom = 741.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.605, 0.605)
+texture = ExtResource("6_7okpu")
+metadata/_edit_lock_ = true
+
+[node name="sensivity_labe" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -316.0
+offset_right = 237.0
+offset_bottom = -186.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_ylo01")
+theme_override_font_sizes/font_size = 96
+text = "sensivity"
+
+[node name="music_labe" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -20.0
+offset_right = 333.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_ylo01")
+theme_override_font_sizes/font_size = 96
+text = "music"
+
+[node name="sesivity_slider" type="HSlider" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -108.0
+offset_right = 200.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pumb7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_qnjnk")
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.1
+
+[node name="music_slider" type="HSlider" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 196.0
+offset_right = 200.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_0j338")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_h8hf5")
+min_value = -19.0
+max_value = 0.0
+step = 0.1
+
+[node name="back_button" type="TextureButton" parent="."]
+visible = false
+modulate = Color(0.72074044, 0.6876949, 0.7230962, 1)
+layout_mode = 0
+offset_left = 24.000004
+offset_top = 23.999992
+offset_right = 1560.0
+offset_bottom = 1048.0
+scale = Vector2(0.175, 0.175)
+texture_normal = ExtResource("9_qnjnk")
+
 [connection signal="gui_input" from="VBoxContainer/play_button" to="." method="_on_play_button_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/settings_button" to="." method="_on_settings_button_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Quit_button" to="." method="_on_quit_button_gui_input"]
+[connection signal="value_changed" from="sesivity_slider" to="." method="_on_sesivity_slider_value_changed"]
+[connection signal="value_changed" from="music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="gui_input" from="back_button" to="." method="_on_back_button_gui_input"]

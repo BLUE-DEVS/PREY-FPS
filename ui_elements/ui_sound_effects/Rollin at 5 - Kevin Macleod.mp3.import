@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhyy1tss0bs0i"
+path="res://.godot/imported/Rollin at 5 - Kevin Macleod.mp3-06e1b3ec942a48405791066b0940112b.mp3str"
+
+[deps]
+
+source_file="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3"
+dest_files=["res://.godot/imported/Rollin at 5 - Kevin Macleod.mp3-06e1b3ec942a48405791066b0940112b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

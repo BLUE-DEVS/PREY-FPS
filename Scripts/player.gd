@@ -1,18 +1,19 @@
 extends CharacterBody3D
 
-var sens := 0.1
+
 var neck_x := 0.0
 var SPEED :float= 13
 var JUMP_VELOCITY:int = 10
 var screen_dir = Vector2.ZERO
 @onready var head: Node3D = $neck
-var sliding:bool=false
+var sliding:bool = false
 @onready var ani: AnimationPlayer = $AnimationPlayer
 var sliding_time:float= 0.0
 var max_sliding_time:float= 1.0
 var slide_sp:int=17
 
 #DO NO TOUCH OR CHANGE abhi me or bhi kaam karuga! ;D
+## ok bro nhi karunaga bas dekh raha hu :D
 #------------------------------------------------------------------
 
 func _ready() -> void:
@@ -59,8 +60,8 @@ func _physics_process(_delta: float) -> void:
 		ani.current_animation = "idle"
 
 
-	head.rotation.x = screen_dir.x * _delta*sens
-	self.rotation.y = screen_dir.y *_delta *sens
+	head.rotation.x = screen_dir.x * _delta* UnivarsalScript.sensivity
+	self.rotation.y = screen_dir.y *_delta * UnivarsalScript.sensivity
 
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
@@ -92,3 +93,53 @@ func end_slide():
 	JUMP_VELOCITY = 10
 	ani.current_animation = "idle"
 	scale.y = 1
+
+## setting button here
+func _on_texture_button_gui_input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			$CanvasLayer/ui_bg_muisc.play()
+			$CanvasLayer/click_sound.play()
+			player_settings_visible()
+			get_tree().paused = true
+			Input.action_press("settings_while_playing")
+		else:
+			Input.action_release("settings_while_playing")
+			
+
+func _on_back_button_pla_gui_input(_event: InputEvent) -> void:
+	if _event is InputEventScreenTouch:
+		if _event.pressed:
+			$CanvasLayer/ui_bg_muisc.stop()
+			$CanvasLayer/click_sound.play()
+			get_tree().paused = true
+			Input.action_press("back")
+			player_setting_unvisible()
+			get_tree().paused = false
+		else:
+			Input.action_release("back")
+	
+
+func _on_quit_game_gui_input(_event: InputEvent) -> void:
+	if _event is InputEventScreenTouch:
+		if _event.pressed:
+			$CanvasLayer/ui_bg_muisc.stop()
+			get_tree().paused = false
+			Input.action_press("quit")
+			player_setting_unvisible()
+			player_setting_unvisible()
+			get_tree().change_scene_to_file("res://Scenes/main_ui.tscn")
+		else:
+			Input.action_release("quit")
+
+
+
+func player_settings_visible():
+	$CanvasLayer/quit_game.visible = true
+	$CanvasLayer/gamesettings.visible = true
+	$CanvasLayer/back_button_pla.visible = true
+	
+func player_setting_unvisible():
+	$CanvasLayer/quit_game.visible = false
+	$CanvasLayer/gamesettings.visible = false
+	$CanvasLayer/back_button_pla.visible = false

@@ -1,26 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=15 format=3 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://bt2nlqinsssdx" path="res://ui_elements/main_ui bakground.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://ctb27c7wk180s" path="res://ui_elements/settings ion.png" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://b052ty4ufmnmg" path="res://ui_elements/resume_button.png" id="5_fkybt"]
+[ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3" id="6_3smsa"]
+[ext_resource type="Texture2D" uid="uid://pincucfsgrwq" path="res://ui_elements/quit_match.png" id="6_8erm5"]
+[ext_resource type="AudioStream" uid="uid://6b81x00ntvsi" path="res://ui_elements/ui_sound_effects/keyboard-click-327728.mp3" id="7_8erm5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
-
-[sub_resource type="Animation" id="Animation_cvnsp"]
-resource_name = "run"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("neck:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.12297356, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -52,6 +41,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.13718659, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.12297356, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fkybt"]
@@ -115,8 +121,80 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 46
 text = "."
+metadata/_edit_lock_ = true
+
+[node name="gamesettings" type="TextureRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.65515083, 0.8403405, 0.7419562, 1)
+texture_filter = 2
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1344.0
+offset_bottom = 756.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.59, 0.59)
+texture = ExtResource("3_6t5aa")
+
+[node name="settings" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -111.0
+offset_top = 29.0
+offset_right = 402.0
+offset_bottom = 524.0
+grow_horizontal = 0
+scale = Vector2(0.155, 0.155)
+texture_normal = ExtResource("4_vgqql")
+
+[node name="back_button_pla" type="TextureButton" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+modulate = Color(0.72074044, 0.6876949, 0.7230962, 1)
+offset_left = 752.0
+offset_top = 320.0
+offset_right = 2288.0
+offset_bottom = 1344.0
+scale = Vector2(0.61, 0.61)
+texture_normal = ExtResource("5_fkybt")
+
+[node name="quit_game" type="TextureButton" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+modulate = Color(0.72074044, 0.6876949, 0.7230962, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -80.99997
+offset_right = 1344.0
+offset_bottom = 943.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.23, 0.23)
+texture_normal = ExtResource("6_8erm5")
+
+[node name="ui_bg_muisc" type="AudioStreamPlayer" parent="CanvasLayer"]
+process_mode = 3
+stream = ExtResource("6_3smsa")
+parameters/looping = true
+
+[node name="click_sound" type="AudioStreamPlayer" parent="CanvasLayer"]
+process_mode = 3
+stream = ExtResource("7_8erm5")
+volume_db = -15.035
+parameters/looping = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vgqql")
 }
+
+[connection signal="gui_input" from="CanvasLayer/settings" to="." method="_on_texture_button_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/quit_game" to="." method="_on_quit_game_gui_input"]
