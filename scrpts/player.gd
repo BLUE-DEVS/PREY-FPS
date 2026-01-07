@@ -26,6 +26,11 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_released("shift"):
 		$neck.position.y = 0
 
+	if is_on_floor():
+		if Input.is_action_pressed("w"):
+			if Input.is_action_pressed("shift"):
+				pass #slide function here
+
 
 	if Input.is_action_pressed("w"):
 		var _tween = get_tree().create_tween()
