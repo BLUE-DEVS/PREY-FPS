@@ -11,7 +11,21 @@ config_version=5
 [application]
 
 config/name="Prey - FPS"
+run/main_scene="uid://b7scace3gmi38"
 config/features=PackedStringArray("4.5", "Mobile")
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "orange",
+"res://scrpts/": "gray",
+"res://ui_elements/UI_sound_effects/": "yellow"
+}
 
 [input]
 

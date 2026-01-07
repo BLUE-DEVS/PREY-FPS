@@ -8,7 +8,11 @@ var screen_dir = Vector2.ZERO
 @onready var head: Node3D = $neck
 
 #------------------------------------------------------------------
-
+## mouse visible false karne ke liye
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
 		screen_dir.y -= _event.relative.x

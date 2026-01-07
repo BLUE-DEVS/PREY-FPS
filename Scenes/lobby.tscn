@@ -17,7 +17,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ruji2"]
+albedo_color = Color(0.4688285, 0.37633297, 0.30673167, 1)
 albedo_texture = ExtResource("1_y0s6v")
+uv1_scale = Vector3(100, 100, 100)
 
 [node name="Lobby" type="Node3D"]
 
