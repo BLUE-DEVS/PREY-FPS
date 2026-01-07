@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7scace3gmi38"]
+[gd_scene load_steps=7 format=3 uid="uid://b7scace3gmi38"]
 
 [ext_resource type="PackedScene" uid="uid://thkrcxofev2k" path="res://Scenes/player.tscn" id="1_nvaej"]
+[ext_resource type="Texture2D" uid="uid://ditvgj8gbbb6a" path="res://addons/Textures of ground/light/texture_01.png" id="1_y0s6v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y0s6v"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -16,7 +17,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ruji2"]
-albedo_color = Color(0, 0.5803922, 0, 1)
+albedo_texture = ExtResource("1_y0s6v")
 
 [node name="Lobby" type="Node3D"]
 
