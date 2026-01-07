@@ -6,5 +6,7 @@ extends Control
 
 func _ready() -> void:
 	boot_anim.play("boot_anim")
+	await get_tree().create_timer(6).timeout
+	get_tree().change_scene_to_file("res://Scenes/main_ui.tscn")
 	
 	
