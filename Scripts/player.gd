@@ -10,8 +10,8 @@ var screen_dir = Vector2.ZERO
 #------------------------------------------------------------------
 ## mouse visible false karne ke liye
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:

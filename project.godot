@@ -23,7 +23,7 @@ window/size/viewport_height=1080
 
 folder_colors={
 "res://Scenes/": "orange",
-"res://scrpts/": "gray",
+"res://Scripts/": "blue",
 "res://ui_elements/UI_sound_effects/": "yellow"
 }
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b7scace3gmi38"]
 
 [ext_resource type="PackedScene" uid="uid://thkrcxofev2k" path="res://Scenes/player.tscn" id="1_nvaej"]
-[ext_resource type="Texture2D" uid="uid://ditvgj8gbbb6a" path="res://addons/Textures of ground/light/texture_01.png" id="1_y0s6v"]
+[ext_resource type="Texture2D" uid="uid://dgbkjxdb23fv6" path="res://addons/Textures of ground/light/texture_02.png" id="1_u1o2k"]
 [ext_resource type="Texture2D" uid="uid://blwxsk4s2a3wr" path="res://addons/Textures of ground/black/texture_01.png" id="3_u1o2k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y0s6v"]
@@ -19,7 +19,7 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ruji2"]
 albedo_color = Color(0.4688285, 0.37633297, 0.30673167, 1)
-albedo_texture = ExtResource("1_y0s6v")
+albedo_texture = ExtResource("1_u1o2k")
 uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avk8s"]
@@ -40,7 +40,7 @@ size = Vector3(60, 1, 60)
 material = SubResource("StandardMaterial3D_ruji2")
 
 [node name="Player" parent="." instance=ExtResource("1_nvaej")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 16.231323)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3502171, 0)
