@@ -1,13 +1,11 @@
 extends CharacterBody3D
 
-
 var sens := 0.1
 var neck_x := 0.0
-var SPEED :int= 13
+var SPEED :float= 13
 var JUMP_VELOCITY:int = 10
 var screen_dir = Vector2.ZERO
 @onready var head: Node3D = $neck
-
 
 #------------------------------------------------------------------
 
@@ -17,6 +15,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
+
+	if Input.is_action_pressed("w"):
+		var _tween = get_tree().create_tween()
+		_tween.tween_property($neck/Camera3D,"fov",90,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if Input.is_action_just_released("w"):
+		$neck/Camera3D.fov = 75
+
+
 	head.rotation.x = screen_dir.x * _delta*sens
 	self.rotation.y = screen_dir.y *_delta *sens
 
