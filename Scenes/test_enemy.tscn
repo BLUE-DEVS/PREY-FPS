@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://07du7imwpwxu"]
+
+[ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="1_ghv5c"]
+[ext_resource type="Script" uid="uid://dq7xmxfmbmda5" path="res://Scripts/test_enemy.gd" id="2_yikbh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yikbh"]
+albedo_texture = ExtResource("1_ghv5c")
+
+[node name="CSGBox3D" type="CSGBox3D"]
+use_collision = true
+collision_layer = 9
+collision_mask = 9
+material = SubResource("StandardMaterial3D_yikbh")
+script = ExtResource("2_yikbh")

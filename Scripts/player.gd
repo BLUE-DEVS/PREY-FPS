@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
 
 var neck_x := 0.0
 var SPEED :float= 13
@@ -11,15 +12,18 @@ var sliding:bool = false
 var sliding_time:float= 0.0
 var max_sliding_time:float= 1.0
 var slide_sp:int=17
+var _crouching :bool 
 
 #DO NO TOUCH OR CHANGE abhi me or bhi kaam karuga! ;D
 ## ok bro nhi karunaga bas dekh raha hu :D
+#or ye Fullscreen ko hata do plzz😭😭
+
 #------------------------------------------------------------------
 
 func _ready() -> void:
 	ani.current_animation = "idle"
-
-
+	$CollisionShape3D.scale.y = 1
+	head.position.y = 0
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
 		screen_dir.y -= _event.relative.x
@@ -40,12 +44,14 @@ func _physics_process(_delta: float) -> void:
 		if sliding_time <= 0:
 			end_slide()
 
-	if Input.is_action_pressed("shift") and not sliding:
-		scale.y = 0.6
-
-	if Input.is_action_just_released("shift"):
-		scale.y = 1
-		SPEED = 13
+	if Input.is_action_just_pressed("shift") and not sliding:
+		_crouching = not _crouching
+		if _crouching:
+			$CollisionShape3D.scale.y = 0.6
+			head.position.y = -0.6
+		elif  not _crouching:
+			$CollisionShape3D.scale.y = 1
+			head.position.y = 0
 
 
 	if Input.is_action_pressed("w"):
@@ -59,15 +65,15 @@ func _physics_process(_delta: float) -> void:
 		_tween.tween_property($neck/Camera3D,"fov",75,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		ani.current_animation = "idle"
 
-
 	head.rotation.x = screen_dir.x * _delta* UnivarsalScript.sensivity
 	self.rotation.y = screen_dir.y *_delta * UnivarsalScript.sensivity
 
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
 
-	if Input.is_action_pressed("ui_accept") and is_on_floor() and not sliding:
+	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
 
 	if not sliding:
 		var input_dir := Input.get_vector("a", "d", "w", "s")
@@ -83,16 +89,18 @@ func slide():
 	sliding = true
 	sliding_time = max_sliding_time
 	var forward_dir = -global_transform.basis.z
-	velocity.x = forward_dir.x * SPEED + slide_sp
-	velocity.z = forward_dir.z * SPEED + slide_sp
-	JUMP_VELOCITY = 0
-	scale.y = 0.4
+	velocity.x = forward_dir.x * slide_sp
+	velocity.z = forward_dir.z * slide_sp
+	JUMP_VELOCITY = 10
+	$CollisionShape3D.scale.y -= 0.4
+	head.position.y = -0.9
 
 func end_slide():
 	sliding = false
 	JUMP_VELOCITY = 10
 	ani.current_animation = "idle"
-	scale.y = 1
+	$CollisionShape3D.scale.y = 1
+	head.position.y = 0
 
 ## setting button here
 func _on_texture_button_gui_input(event: InputEvent) -> void:
@@ -105,7 +113,6 @@ func _on_texture_button_gui_input(event: InputEvent) -> void:
 			Input.action_press("settings_while_playing")
 		else:
 			Input.action_release("settings_while_playing")
-			
 
 func _on_back_button_pla_gui_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenTouch:
@@ -132,8 +139,6 @@ func _on_quit_game_gui_input(_event: InputEvent) -> void:
 		else:
 			Input.action_release("quit")
 
-
-
 func player_settings_visible():
 	$CanvasLayer/quit_game.visible = true
 	$CanvasLayer/gamesettings.visible = true
@@ -143,3 +148,9 @@ func player_setting_unvisible():
 	$CanvasLayer/quit_game.visible = false
 	$CanvasLayer/gamesettings.visible = false
 	$CanvasLayer/back_button_pla.visible = false
+
+func _on_shoot_butt_pressed() -> void:
+	if shoot_dec.is_colliding():
+		var _collider = shoot_dec.get_collider()
+		if _collider is Killable:
+			_collider.damage()

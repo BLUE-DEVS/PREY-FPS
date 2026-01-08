@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=21 format=3 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
@@ -8,6 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3" id="6_3smsa"]
 [ext_resource type="Texture2D" uid="uid://pincucfsgrwq" path="res://ui_elements/quit_match.png" id="6_8erm5"]
 [ext_resource type="AudioStream" uid="uid://6b81x00ntvsi" path="res://ui_elements/ui_sound_effects/keyboard-click-327728.mp3" id="7_8erm5"]
+[ext_resource type="Texture2D" uid="uid://7b7iue2gj1jy" path="res://ui_elements/shoot button.png" id="9_f1ek2"]
+[ext_resource type="PackedScene" uid="uid://c2uwtvd8q3orw" path="res://Scenes/sniper_rifle.tscn" id="10_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://ewp047up120i" path="res://ui_elements/jump icon.png" id="11_gymyn"]
+[ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
+[ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -76,12 +81,17 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.23620462)]
 }
 
+[sub_resource type="Animation" id="Animation_gymyn"]
+resource_name = "shoot"
+length = 0.8
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
 _data = {
 &"RESET": SubResource("Animation_6t5aa"),
 &"idle": SubResource("Animation_vgqql"),
 &"run": SubResource("Animation_cvnsp"),
-&"slide": SubResource("Animation_fkybt")
+&"slide": SubResource("Animation_fkybt"),
+&"sniper shoot": SubResource("Animation_gymyn")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -94,6 +104,14 @@ shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="Camera3D" type="Camera3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7284069, 0)
+
+[node name="shoot detecter" type="RayCast3D" parent="neck"]
+transform = Transform3D(1.42, 0, 0, 0, -1.0927847e-06, -1, 0, 25, -4.371139e-08, 0, 0.6989009, -0.069141746)
+collision_mask = 8
+debug_shape_custom_color = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
+
+[node name="Sniper Rifle" parent="neck" instance=ExtResource("10_tx1dd")]
+transform = Transform3D(0.19828077, 0, 0.026167532, 0, 0.2, 0, -0.026167532, 0, 0.19828077, 0.47912288, 0.6142032, -0.79011345)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -197,6 +215,30 @@ stream = ExtResource("7_8erm5")
 volume_db = -15.035
 parameters/looping = false
 
+[node name="shoot_butt" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(803, 225)
+scale = Vector2(0.24166663, 0.2590793)
+texture_normal = ExtResource("9_f1ek2")
+action = "shoot"
+
+[node name="jump_butt" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(988, 332)
+scale = Vector2(0.15925927, 0.15925927)
+texture_normal = ExtResource("11_gymyn")
+action = "ui_accept"
+
+[node name="crouch_butt" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(782, 498)
+scale = Vector2(0.1148148, 0.1148148)
+texture_normal = ExtResource("12_ukyrk")
+action = "shift"
+
+[node name="slide_butt" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(662, 486)
+scale = Vector2(0.13888891, 0.13888891)
+texture_normal = ExtResource("13_7dp3o")
+action = "slide"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vgqql")
@@ -205,3 +247,4 @@ libraries = {
 [connection signal="gui_input" from="CanvasLayer/settings" to="." method="_on_texture_button_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/quit_game" to="." method="_on_quit_game_gui_input"]
+[connection signal="pressed" from="CanvasLayer/shoot_butt" to="." method="_on_shoot_butt_pressed"]
