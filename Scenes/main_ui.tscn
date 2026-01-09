@@ -58,10 +58,8 @@ color = Color(0.15231416, 0.12023606, 0.19902271, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1336.0
-offset_top = 216.0
-offset_right = 2872.0
-offset_bottom = 2446.0
+offset_right = 1536.0
+offset_bottom = 2310.0
 scale = Vector2(0.26, 0.26)
 pivot_offset = Vector2(0.165, 0)
 theme_override_constants/separation = -381

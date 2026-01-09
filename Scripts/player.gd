@@ -13,10 +13,12 @@ var sliding_time:float= 0.0
 var max_sliding_time:float= 1.0
 var slide_sp:int=17
 var _crouching :bool 
+var can_wall_jump :bool= true
 
 #DO NO TOUCH OR CHANGE abhi me or bhi kaam karuga! ;D
 ## ok bro nhi karunaga bas dekh raha hu :D
 #or ye Fullscreen ko hata do plzz😭😭
+#i added wall jumping (partical apka kaam h :)
 
 #------------------------------------------------------------------
 
@@ -33,8 +35,8 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()
-	if Input.is_action_just_pressed("shift") and Input.is_action_pressed("w") and is_on_floor():
-		SPEED = 7
+
+
 
 	if sliding:
 		sliding_time -= _delta
@@ -47,9 +49,11 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shift") and not sliding:
 		_crouching = not _crouching
 		if _crouching:
+			SPEED = 7
 			$CollisionShape3D.scale.y = 0.6
 			head.position.y = -0.6
 		elif  not _crouching:
+			SPEED = 13
 			$CollisionShape3D.scale.y = 1
 			head.position.y = 0
 
@@ -73,6 +77,12 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	if Input.is_action_pressed("ui_accept") and is_on_wall_only() and can_wall_jump:
+		velocity.y = JUMP_VELOCITY
+		can_wall_jump = false
+		await get_tree().create_timer(2).timeout
+		can_wall_jump=true
 
 
 	if not sliding:
