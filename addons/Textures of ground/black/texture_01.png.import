@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://blwxsk4s2a3wr"
 path.s3tc="res://.godot/imported/texture_01.png-56e14eaac7f56b2d828cb9bc71f90533.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_01.png-56e14eaac7f56b2d828cb9bc71f90533.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/Textures of ground/black/texture_01.png"
-dest_files=["res://.godot/imported/texture_01.png-56e14eaac7f56b2d828cb9bc71f90533.s3tc.ctex"]
+dest_files=["res://.godot/imported/texture_01.png-56e14eaac7f56b2d828cb9bc71f90533.s3tc.ctex", "res://.godot/imported/texture_01.png-56e14eaac7f56b2d828cb9bc71f90533.etc2.ctex"]
 
 [params]
 
