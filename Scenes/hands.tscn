@@ -86,5 +86,6 @@ skeleton = NodePath("")
 
 [node name="hand1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5335408, 0.8457743, -1.0082416e-07, 0, -1.1920928e-07, -0.9999999, -0.8457743, -0.53354067, 6.360301e-08, 0.062075764, 0, -0.05275917)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_td0cs")
 skeleton = NodePath("")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=31 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://bt2nlqinsssdx" path="res://ui_elements/main_ui bakground.png" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://bku087a425x3r" path="res://Scenes/assault_rifle.tscn" id="4_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://ctb27c7wk180s" path="res://ui_elements/settings ion.png" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://b052ty4ufmnmg" path="res://ui_elements/resume_button.png" id="5_fkybt"]
 [ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3" id="6_3smsa"]
@@ -13,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://ewp047up120i" path="res://ui_elements/jump icon.png" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
-[ext_resource type="PackedScene" uid="uid://pxtx10ch86y8" path="res://hands.tscn" id="14_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
@@ -55,6 +55,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2tuiu")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wk1xy"]
+resource_name = "mat21"
+cull_mode = 2
+albedo_texture = ExtResource("15_fd4e3")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qeybu"]
+_surfaces = [{
+"aabb": AABB(-0.03562295, 0.0204643, -0.08822405, 0.070833445, 0.1602186, 0.049246073),
+"format": 34896613377,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAACAAQAAwAEAAIAAAAFAAEAAAAGAAUAAAAHAAYABwAFAAYAAAAEAAcACAABAAUABwAIAAUACAAJAAEACgAIAAcACgAJAAgABAAKAAcACQAKAAsABAAMAAoADAALAAoADQAJAAsADAANAAsADgABAAkAAwABAA4ADgAJAA8ADwAJAA0AEAADAA4AEQAOAA8AEAAOABEAEgAPAA0AEQAPABIADQAMABMAEwAMAAQAEgANABQAFAANABMAFQARABIAFQAQABEAEwAEABYAFgAEAAMAFwATABYAFAATABcAGAAWAAMAGAADABAAFwAWABgAGQAUABcAGQAXABgAGgAYABAAGQAYABoAGgAQABsAEAAVABsAHAAZABoAHQAaABsAHAAaAB0AHQAbABUAHgAZABwAHQAeABwAHgAfABkAFAAZAB8AHQAgAB4AFQAgAB0AHgAhAB8AIQAUAB8AIQAeACAAIAAVACEAIQASABQAFQASACEA"),
+"name": "mat21",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 34,
+"vertex_data": PackedByteArray("53n+JecOAAA8z9I7504AAPiK0jvOHQAA+IpGh+dOAAC0RtI7504AAGzbKxAYMQAA/38qEAAAAACSJCoQGDEAAP//AAD//wAAPM/SOzDiAAAAACsQ//8AAEiSbC///wAAtEbSOzDiAAD4ikaHMOIAABqtRof/fwAAGq1GhxexAAD4iqLD504AABqtosP/fwAAGq2iwxexAADWaEaHF7EAAPiKosMw4gAAZri50t93AADWaEaH/38AANZoosMXsQAA1miiw/9/AACJXbnSN7kAAIldudLfdwAA+Iq50p9nAACJXefwN7kAAPiKBPCfZwAA+Ir//3fJAAD4irnSd8kAAGa45/A3uQAAZri50je5AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_td0cs"]
+resource_name = "hands_group847455024_001"
+_surfaces = [{
+"aabb": AABB(-0.03562295, 0.0204643, -0.08822405, 0.070833445, 0.1602186, 0.049246073),
+"attribute_data": PackedByteArray("KAlcL0YebjX5DGA4UN0Ue7TZSpzpwLad7EJl4hRbyeOTYP//aJ3JwZuNxZk/pf2+/4sdOv+Lm3gfaatCeDSL6dg8a/tJMGX0UN0Ue+nAtp2iugqGH2mrQv+Lm3iGaP9uVEEEQFRB8XdGHgx07EJl4pNg///YPGv7UFZeuexCZeJDTue4FFvJ40NO57jsQmXih0T+tTjLr8a02Uqce9M2xunAtp1Jo/bhP6X9viCrKt9oncnBJRAhXUYebjXTG4VdeDSL6exCZeLYPGv7gjcI3T+l/b4yrsWTtK3JvjKuxZPCmrKPorqbeD+l/b6bjcWZwpqyjzKuxZM/pf2+wpqyjygJRUYoCfF3sAVsVSgJXC9GHt4eRh5uNSgJFCQfaatChmj/bpNgwliHRP617EJl4oI3CN1GHm41JRAhXfkMYDggqyrftK3JvpSz9t4/pf2+SVrDmUNO57g8Uk2ZUFZeuTxSTZmHRP61gEhjlkNO57jWDY130xuFXYQZ8XclECFdIM3E53vTNsZk1UvnOMuvxlnXdO9k1UvnUN3q5rK3S+YgqyrflLP23itdwJI8Uk2ZdFIikklaw5l0UiKSPFJNmYBIY5ZZzBXwhsRV6CDNxOdZzBXwZNVL51nXdO8gzcTnKLH//wKiSerArN3n8qRg+ijhj3A41xR7htmNcjjXFHvBz1lwhtmNciix///ArN3nsrdL5qK6YvYoX/OCK13AknRSIpJ6T2J/dFIikoxNuI4o4TBohtmNcsHPWXBN2P//WcwV8FnXdO8o4TBoUNM9XeDe6VV6T2J/k2Dxdyhf84ICoknqIKsq38Cs3ecgqyrfsrdL5sCs3ecoX/OCdFIiknpPYn/Bz1lwUNM9XSjhMGg="),
+"format": 34896613399,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAHgAhAB8AIgAjACQAJQAmACcAJQAoACYAKQAqACsAKQAsACoALQAuAC8AMAAxADIAMAAzADEANAA1ADYANwA4ADkAOgA7ADwAPQA+AD8AQABBAEIAQwBEAEUAQwBGAEQARwBIAEkASgBLAEwATQBOAE8AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZwBoAGkAagBrAGwAagBtAGsAbgBvAHAAcQByAHMAdAB1AHYAdAB3AHUAeAB5AHoAeQB4AHsAfAB9AH4AfwCAAIEAggCDAIQAggCEAIUAhgCHAIgAiQCKAIsAjACNAI4AjwCQAJEAkgCTAJQAlQCWAJcAmACZAJoAmwCcAJ0AngCfAKAAoQCiAKMA"),
+"material": SubResource("StandardMaterial3D_wk1xy"),
+"name": "mat21",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 164,
+"vertex_data": PackedByteArray("53n+JecOgf88z9I7506B//iK0jvOHYH///8AAP//yvc8z9I7MOLK9zzP0jvnTsr3tEbSO+dOI8O0RtI7MOIjwwAAKxD//yPDGq1Ghxex5vo8z9I7MOLm+viKRocw4ub6AAArEP//INP//wAA//8g05IkKhAYMSDT53n+JecOtvCSJCoQGDG28P9/KhAAALbw//8AAP//XPw8z9I7505c/GzbKxAYMVz8kiQqEBgx0dv//wAA///R22zbKxAYMdHbAAArEP//i9I8z9I7MOKL0v//AAD//4vStEbSO+dOY8oAACsQ//9jypIkKhAYMWPK1mhGhxexM8C0RtI7504zwNZoRof/fzPAtEbSOzDiM8DWaEaH/38r37RG0jvnTivf+IpGh+dOK98arUaH/3/8+zzP0jsw4vz7Gq1Ghxex/Ps8z9I75078+xqtosMXse32+IpGhzDi7fb4iqLDMOLt9hqtRocXse32+IpGh+dOEfU8z9I7504R9RqtRof/fxH153n+JecOkeu0RtI7506R65IkKhAYMZHr+IrSO84dkev4ikaHMOIP+7RG0jsw4g/71mhGhxexD/u0RtI7MOK/+EiSbC///7/4AAArEP//v/j4ikaHMOLN9zzP0jsw4s33SJJsL///zfe0RtI7MOLb+fiKRocw4tv5SJJsL///2/k8z9I7MOIPzgAAKxD//w/OSJJsL///D87nef4l5w5X+GzbKxAYMVj4PM/SO+dOWPj/fyoQAABX+JIkKhAYMYrVbNsrEBgxitX/fyoQAACK1fiKRofnTlTstEbSO+dOVOz4itI7zh1U7DzP0jvnTqn6+IpGh+dOqfr4itI7zh2p+viKosMw4lL/1mhGhxexUv/WaKLDF7FS//iKRocw4lL/1miiwxexCMDWaEaH/38IwNZoosP/fwjA1mhGhxexCMDWaKLD/39F4PiKRofnTkXg+Iqiw+dOReDWaEaH/39F4PiKosPnTlj/Gq1Gh/9/WP8araLD/39Y//iKRofnTlj/Gq2iw/9/Wf4arUaHF7FZ/hqtosMXsVn+Gq1Gh/9/Wf5muLnSN7lz+RqtosMXsXP5+IqiwzDic/mJXbnSN7mG+/iKosMw4ob71miiwxexhvuJXbnSN7mDwdZoosP/f4PBiV250t93g8HWaKLDF7GDwYldudLfd8Di1miiw/9/wOL4iqLD507A4ma4udLfd4Ly+Iqiw+dOgvIaraLD/3+C8ma4udLfdxP1Gq2iwxexE/VmuLnSN7kT9RqtosP/fxP1+Ir//3fJP/dmuLnSN7k/9/iKudJ3yT/3Zrjn8De5P/eJXbnS33cd+PiKosPnTh34+Iq50p9nHfj4iqLD505O+Ga4udLfd074+Iq50p9nTvj4iv//d8lK+viKudJ3yUr6iV250je5SvqJXefwN7lK+old5/A3uQjAiV250je5CMCJXbnS33cIwPiKBPCfZy72iV250t93Lvb4irnSn2cu9viKBPCfZyz2+Iq50p9nLPZmuLnS33cs9ma45/A3uVn+Zri50t93Wf5muLnSN7lZ/viKBPCfZ5/sZrjn8De5n+z4iv//d8mf7PiKBPCfZ5nb+Ir//3fJmduJXefwN7mZ22a4udI3uT35+IqiwzDiPfn4irnSd8k9+fiKosMw4iH4iV250je5Ifj4irnSd8kh+Ild5/A3uRnbiV250t93Gdv4igTwn2cZ22a4udLfd8fjZrjn8De5x+P4igTwn2fH45sJpl+bCaZfmwmmX7255Yu9ueWLvbnli3ubps17m6bNe5umzVQP1R9UD9UfVA/VH2kvG9dpLxvXaS8b14iRUOmIkVDpiJFQ6f/Ca4b/wmuG/8JrhmwuhdJsLoXSbC6F0hD2aQQQ9mkEEPZpBAaU3d4GlN3eBpTd3p2NyeqdjcnqnY3J6p2NyeqskpbkrJKW5KySluT4u7SH+Lu0h/i7tIf4u7SHYgQ0JGIENCRiBDQkYgQ0JDjYfIM42HyDONh8g56SruCekq7gnpKu4J6SruDX9E4i1/ROItf0TiKb8DwJm/A8CZvwPAl7B0sOewdLDnsHSw7L+10Ny/tdDcv7XQ1+Y25GfmNuRn5jbkbF34aNxd+GjcXfho3F34aNyiqV1coqldXKKpXVxZGX6MWRl+jFkZfogN5lioDeZYqA3mWKqf+a2qn/mtqp/5raqf+a2hWHdPwVh3T8FYd0/BWHdPyjkxvyo5Mb8qOTG/KjkxvyMNkifjDZIn4w2SJ+MNkifs4BGD/OARg/zgEYP84BGD86DS7eOg0u3joNLt7AXulxwF7pccBe6XHsYMXz7GDF8+xgxfPsYMXzmJ3S+Jid0viYndL4+AP6p/gD+qf4A/qn3Qejw90Ho8PdB6PD3Qejw38BzQ1/Ac0NfwHNDX8BzQ1rebvha3m74Wt5u+HlYIEH5WCBB+VggQcE/yPyBP8j8gT/I/IE/yPyFYd0/BWHdPwVh3T81pI279aSNu/Wkjbv220pENttKRDbbSkQzgEYP84BGD/OARg/uEv/B7hL/we4S/8HSZsBx0mbAcdJmwHHWRcjCVkXIwlZFyMJDOsXDQzrFw0M6xcNY5TD3WOUw91jlMPdplABE6ZQAROmUAET")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qeybu")
+
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
 tracks/0/type = "value"
@@ -72,50 +109,74 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("neck/hands/hand2:position")
+tracks/1/path = NodePath("neck/hands/hand1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, -0.14)]
+"values": [Vector3(0.064039394, 0.062704526, 0.105971135)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("neck/hands/hand2:rotation")
+tracks/2/path = NodePath("neck/hands/hand1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.37013188, -2.9382267, 2.3637695)]
+"values": [Vector3(-0.8870589, 0.62653226, 0.46569946)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("neck/hands/hand1:position")
+tracks/3/path = NodePath("neck/hands/hand2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.037128873, 0.070871845, 0.043004986)]
+"values": [Vector3(0.0042377785, 0.0118191745, -0.18261927)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("neck/hands/hand1:rotation")
+tracks/4/path = NodePath("neck/hands/hand2:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.7863266, 1.0287297, 0.63515145)]
+"values": [Vector3(0.32480934, -2.6487951, 2.3466861)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("neck/Sniper Rifle:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.47912288, 0.6142032, -0.6377995)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("neck/Sniper Rifle:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.13121386, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vgqql"]
@@ -137,50 +198,50 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("neck/hands/hand2:position")
+tracks/1/path = NodePath("neck/hands/hand1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, -0.14)]
+"values": [Vector3(0.0640394, 0.0627045, 0.105971135)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("neck/hands/hand2:rotation")
+tracks/2/path = NodePath("neck/hands/hand1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.37013188, -2.9382267, 2.3637695)]
+"values": [Vector3(-0.67179805, 1.0019906, 0.4572679)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("neck/hands/hand1:position")
+tracks/3/path = NodePath("neck/hands/hand2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.037128873, 0.070871845, 0.043004986)]
+"values": [Vector3(0.0042377785, 0.0118191745, -0.18261927)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("neck/hands/hand1:rotation")
+tracks/4/path = NodePath("neck/hands/hand2:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.7863266, 1.0287297, 0.63515145)]
+"values": [Vector3(0.32480934, -2.6487951, 2.3466861)]
 }
 
 [sub_resource type="Animation" id="Animation_cvnsp"]
@@ -202,50 +263,50 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("neck/hands/hand2:rotation")
-tracks/1/interp = 2
+tracks/1/path = NodePath("neck/hands/hand2:position")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.42814615, -3.1319923, 1.87386), Vector3(0.23948394, -2.8009102, 2.813338)]
+"values": [Vector3(0.030603824, 0.0041512894, -0.18212405), Vector3(0.06559016, 0.012777068, -0.18070322)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("neck/hands/hand2:position")
-tracks/2/interp = 2
+tracks/2/path = NodePath("neck/hands/hand2:rotation")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, -0.14), Vector3(0.005694775, 0.01958841, -0.13989305)]
+"values": [Vector3(0.5222195, -2.8540938, 1.8577902), Vector3(0.3076555, -2.6389122, 2.3784637)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("neck/hands/hand1:position")
-tracks/3/interp = 2
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.07958538, 0.05852446, 0.04380241), Vector3(0.05770728, 0.09811475, 0.043391496)]
+"values": [Vector3(0.09421244, 0.037313372, 0.11723962), Vector3(0.060874864, 0.041102387, 0.116613455)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("neck/hands/hand1:rotation")
-tracks/4/interp = 2
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.22936662, 1.181037, 0.335694), Vector3(-1.0521469, 0.75941473, 0.9697529)]
+"values": [Vector3(-0.462893, 1.0281609, 0.20584533), Vector3(-0.8460808, 0.81082976, 0.55414546)]
 }
 
 [sub_resource type="Animation" id="Animation_fkybt"]
@@ -268,19 +329,125 @@ tracks/0/keys = {
 resource_name = "shoot"
 length = 0.8
 
+[sub_resource type="Animation" id="Animation_h4iuc"]
+resource_name = "sniper hold"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/hands/hand1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.020793833, -0.021613399, 0.020790823)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("neck/hands/hand1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.58004296, -1.2276293, 0.8718383)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("neck/hands/hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.008272346, 0.01040698, -0.1388025)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("neck/hands/hand2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.9729709, -0.56504345, -2.5329406)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("neck/Sniper Rifle:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.47912288, 0.6142032, -0.6377995)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("neck/Sniper Rifle:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.13121386, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fd4e3"]
+resource_name = "sniper_reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/Sniper Rifle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.47912288, 0.6142032, -0.6377995), Vector3(0.47912288, 1.3534832, -0.6377995), Vector3(0.479, 0.61, -0.638)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("neck/Sniper Rifle:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.13121386, 0), Vector3(-1.0324951, 2.8835337, -2.9187393), Vector3(0, 0.1308997, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
 _data = {
 &"RESET": SubResource("Animation_6t5aa"),
+&"gun hold": SubResource("Animation_h4iuc"),
 &"idle": SubResource("Animation_vgqql"),
 &"run": SubResource("Animation_cvnsp"),
 &"slide": SubResource("Animation_fkybt"),
-&"sniper shoot": SubResource("Animation_gymyn")
+&"sniper shoot": SubResource("Animation_gymyn"),
+&"sniper_reload": SubResource("Animation_fd4e3")
 }
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.22283351)
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="neck" type="Node3D" parent="."]
@@ -288,24 +455,32 @@ shape = SubResource("CapsuleShape3D_sh265")
 [node name="Camera3D" type="Camera3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7284069, 0)
 
-[node name="shoot detecter" type="RayCast3D" parent="neck"]
-transform = Transform3D(1.42, 0, 0, 0, -1.0927847e-06, -1, 0, 25, -4.371139e-08, 0, 0.6989009, -0.069141746)
-collision_mask = 8
-debug_shape_custom_color = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
-
 [node name="Sniper Rifle" parent="neck" instance=ExtResource("10_tx1dd")]
-transform = Transform3D(0.19828077, 0, 0.026167532, 0, 0.2, 0, -0.026167532, 0, 0.19828077, 0.47912288, 0.6142032, -0.79011345)
-visible = false
+transform = Transform3D(0.19828075, 0, 0.026167529, 0, 0.19999997, 0, -0.02616753, 0, 0.19828074, 0.47912288, 0.6142032, -0.6377995)
 
-[node name="hands" parent="neck" instance=ExtResource("14_h4iuc")]
+[node name="hands" type="Node3D" parent="neck"]
 transform = Transform3D(0.11201458, 1.8174697e-07, -5.963948, 1.6651878, 5.7277737, 0.031275645, 5.726764, -1.6654816, 0.107559726, -0.14512613, 0, -0.22501221)
 
-[node name="hand2" parent="neck/hands" index="0"]
-transform = Transform3D(0.6464931, 0.7393192, -0.18828978, 0.6542087, -0.66419554, -0.36173838, -0.39250153, 0.11068046, -0.9130675, 0, 0, -0.14)
+[node name="hand2" type="MeshInstance3D" parent="neck/hands"]
+transform = Transform3D(0.50925106, 0.73460203, -0.44835478, 0.6764743, -0.6637309, -0.3191278, -0.53201914, -0.14078446, -0.83494526, 0.0042377785, 0.0118191745, -0.18261927)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_m0pa7")
+skeleton = NodePath("")
 
-[node name="hand1" parent="neck/hands" index="1"]
-transform = Transform3D(0.05557804, -0.79415, 0.60517544, 0.41913652, 0.56868005, 0.7077619, -0.9062209, 0.21431564, 0.36446226, 0.037128873, 0.070871845, 0.043004986)
+[node name="hand1" type="MeshInstance3D" parent="neck/hands"]
+transform = Transform3D(0.5196898, -0.7698943, 0.37038666, 0.28366134, 0.5644247, 0.7752157, -0.8058906, -0.2978081, 0.5117132, 0.064039394, 0.062704526, 0.105971135)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_td0cs")
+skeleton = NodePath("")
+
+[node name="Assault Rifle" parent="neck" instance=ExtResource("4_h4iuc")]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0.4580047, 0.683316, -1.2002301)
+visible = false
+
+[node name="shoot detecter" type="RayCast3D" parent="neck"]
+transform = Transform3D(1.4199997, 0, -4.440892e-16, 0, -1.0927846e-06, -0.9999998, 0, 24.999996, -4.3711385e-08, 5.9604645e-08, 0.6989008, 0.08317208)
+collision_mask = 8
+debug_shape_custom_color = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -410,7 +585,6 @@ volume_db = -15.035
 parameters/looping = false
 
 [node name="shoot_butt" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
 position = Vector2(803, 225)
 scale = Vector2(0.24166663, 0.2590793)
 texture_normal = ExtResource("9_f1ek2")
@@ -443,5 +617,3 @@ libraries = {
 [connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/quit_game" to="." method="_on_quit_game_gui_input"]
 [connection signal="pressed" from="CanvasLayer/shoot_butt" to="." method="_on_shoot_butt_pressed"]
-
-[editable path="neck/hands"]

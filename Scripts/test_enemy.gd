@@ -9,6 +9,6 @@ func _process(_delta: float) -> void:
 
 
 func damage():
-	var _damage = randi_range(10,20)
+	var _damage = randi_range(50,70)
 	heath -= _damage
 	print(_damage)

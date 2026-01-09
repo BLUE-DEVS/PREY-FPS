@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
+enum hand_state {blank,with_sniper,with_smg}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
-
+@onready var sniper: Node3D= $"neck/Sniper Rifle"
 var neck_x := 0.0
 var SPEED :float= 13
 var JUMP_VELOCITY:int = 10
@@ -14,11 +15,15 @@ var max_sliding_time:float= 1.0
 var slide_sp:int=17
 var _crouching :bool 
 var can_wall_jump :bool= true
+var current_hand_state = hand_state.blank
+@onready var smg: Node3D = $"neck/Assault Rifle"
+var is_reloading:bool=false
+
 
 #DO NO TOUCH OR CHANGE abhi me or bhi kaam karuga! ;D
 ## ok bro nhi karunaga bas dekh raha hu :D
 #or ye Fullscreen ko hata do plzz😭😭
-#i added wall jumping (partical apka kaam h :)
+#I added wall jumping (particals apka kaam h :)
 
 #------------------------------------------------------------------
 
@@ -26,6 +31,8 @@ func _ready() -> void:
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
+	current_hand_state = hand_state.with_sniper
+
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
 		screen_dir.y -= _event.relative.x
@@ -36,7 +43,22 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()
 
-
+	if current_hand_state == hand_state.with_sniper:
+		sniper.show()
+		smg.hide()
+		$CanvasLayer/shoot_butt.show()
+		ani.current_animation = "gun hold"
+	elif current_hand_state == hand_state.with_smg:
+		sniper.hide()
+		smg.show()
+		ani.current_animation = "gun hold"
+		$CanvasLayer/shoot_butt.show()
+	else:
+		smg.hide()
+		sniper.hide()
+		$CanvasLayer/shoot_butt.hide()
+		if Input.is_action_pressed("w"):
+			ani.current_animation = "run"
 
 	if sliding:
 		sliding_time -= _delta
@@ -61,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("w"):
 		var _tween = get_tree().create_tween()
 		_tween.tween_property($neck/Camera3D,"fov",90,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-		ani.current_animation = "run"
+
 
 
 	if Input.is_action_just_released("w"):
@@ -160,7 +182,15 @@ func player_setting_unvisible():
 	$CanvasLayer/back_button_pla.visible = false
 
 func _on_shoot_butt_pressed() -> void:
-	if shoot_dec.is_colliding():
+	if shoot_dec.is_colliding() and not is_reloading:
 		var _collider = shoot_dec.get_collider()
 		if _collider is Killable:
 			_collider.damage()
+	_reload()
+
+
+func _reload():
+	is_reloading = true
+	#ani.current_animation = "sniper_reload"
+	await get_tree().create_timer(1).timeout
+	is_reloading = false

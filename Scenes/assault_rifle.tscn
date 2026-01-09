@@ -99,5 +99,6 @@ shadow_mesh = SubResource("ArrayMesh_2bfix")
 [node name="Assault Rifle" type="Node3D"]
 
 [node name="AssaultRIfle_01_Cube_002" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_3abgc")
 skeleton = NodePath("")
