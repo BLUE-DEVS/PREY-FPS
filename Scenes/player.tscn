@@ -443,7 +443,7 @@ _data = {
 &"sniper_reload": SubResource("Animation_fd4e3")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player_gro"]]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
 script = ExtResource("1_cvnsp")
 
@@ -463,7 +463,7 @@ transform = Transform3D(0.19828075, 0, 0.026167529, 0, 0.19999997, 0, -0.0261675
 transform = Transform3D(0.11201458, 1.8174697e-07, -5.963948, 1.6651878, 5.7277737, 0.031275645, 5.726764, -1.6654816, 0.107559726, -0.14512613, 0, -0.22501221)
 
 [node name="hand2" type="MeshInstance3D" parent="neck/hands"]
-transform = Transform3D(0.50925106, 0.734602, -0.44835472, 0.6764743, -0.6637309, -0.3191278, -0.53201914, -0.14078441, -0.83494526, 0.0042377785, 0.0118191745, -0.18261927)
+transform = Transform3D(0.50925106, 0.734602, -0.44835475, 0.6764743, -0.6637309, -0.3191278, -0.53201914, -0.14078444, -0.83494526, 0.0042377785, 0.0118191745, -0.18261927)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_m0pa7")
 skeleton = NodePath("")

@@ -25,6 +25,7 @@ var is_reloading:bool=false
 #or ye Fullscreen ko hata do plzz😭😭
 #I added wall jumping (particals apka kaam h :)
 ## what particals? ye to hamari script me bhi nhi tha?
+#muzzle flash,jump,slide,and run me speedy lines
 
 #------------------------------------------------------------------
 

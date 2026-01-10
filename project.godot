@@ -35,6 +35,10 @@ folder_colors={
 "res://ui_elements/": "green"
 }
 
+[global_group]
+
+player_gro=""
+
 [input]
 
 w={

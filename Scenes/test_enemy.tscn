@@ -1,14 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://07du7imwpwxu"]
+[gd_scene load_steps=6 format=3 uid="uid://07du7imwpwxu"]
 
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="1_ghv5c"]
 [ext_resource type="Script" uid="uid://dq7xmxfmbmda5" path="res://Scripts/test_enemy.gd" id="2_yikbh"]
+[ext_resource type="Texture2D" uid="uid://ctb27c7wk180s" path="res://ui_elements/settings ion.png" id="3_5b80j"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yikbh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6qe4"]
 albedo_texture = ExtResource("1_ghv5c")
 
-[node name="CSGBox3D" type="CSGBox3D"]
-use_collision = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_5b80j"]
+size = Vector3(1, 3.6188965, 1)
+
+[node name="test_bot" type="CharacterBody3D"]
 collision_layer = 9
 collision_mask = 9
-material = SubResource("StandardMaterial3D_yikbh")
 script = ExtResource("2_yikbh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8344704, 0)
+size = Vector3(1, 2.7041016, 1)
+material = SubResource("StandardMaterial3D_k6qe4")
+
+[node name="head" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06572616, 0)
+size = Vector3(1, 1.0888672, 1)
+material = SubResource("StandardMaterial3D_k6qe4")
+
+[node name="Sprite3D" type="Sprite3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06572616, -0.5428107)
+pixel_size = 0.003
+texture = ExtResource("3_5b80j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3094482, 0)
+shape = SubResource("BoxShape3D_5b80j")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

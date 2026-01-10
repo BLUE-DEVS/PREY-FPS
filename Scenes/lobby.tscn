@@ -82,7 +82,7 @@ material = SubResource("StandardMaterial3D_ruji2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 16.231323)
 
 [node name="CSGBox3D5" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.131897, 1.3498585, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.131897, 4.65021, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(38.82, 0, 0, 0, 0.017, 0, 0, 0, 38.82, 9.417648, 0.89809746, 1.1575084)
