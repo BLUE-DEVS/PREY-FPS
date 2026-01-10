@@ -24,6 +24,7 @@ var is_reloading:bool=false
 ## ok bro nhi karunaga bas dekh raha hu :D
 #or ye Fullscreen ko hata do plzz😭😭
 #I added wall jumping (particals apka kaam h :)
+## what particals? ye to hamari script me bhi nhi tha?
 
 #------------------------------------------------------------------
 
