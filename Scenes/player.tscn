@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=34 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
+[ext_resource type="Texture2D" uid="uid://e72mnwxm3y8t" path="res://addons/Textures of ground/purple/texture_01.png" id="16_igrcy"]
+[ext_resource type="AudioStream" uid="uid://bilwrbvp587gq" path="res://Others/audio-editor-output.mp3" id="16_qqcod"]
+[ext_resource type="AudioStream" uid="uid://dwg8lc4qq52ir" path="res://Others/sniper-reload-made-with-Voicemod.mp3" id="17_igrcy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -181,7 +184,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_h4iuc"]
 resource_name = "sniper hold"
-length = 0.1
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -609,10 +612,22 @@ scale = Vector2(0.13888891, 0.13888891)
 texture_normal = ExtResource("13_7dp3o")
 action = "slide"
 
+[node name="change_wea" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(962, 27.00003)
+scale = Vector2(0.0664063, 0.0664063)
+texture_normal = ExtResource("16_igrcy")
+action = "change_wea"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vgqql")
 }
+
+[node name="sni_shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_qqcod")
+
+[node name="sni_rel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_igrcy")
 
 [connection signal="gui_input" from="CanvasLayer/settings" to="." method="_on_texture_button_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]

@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1wjcdfup8ury"
-path.s3tc="res://.godot/imported/texture_02.png-8a882c86c5c1e6ac1ec111014010ab4b.s3tc.ctex"
-path.etc2="res://.godot/imported/texture_02.png-8a882c86c5c1e6ac1ec111014010ab4b.etc2.ctex"
+uid="uid://jlpr48116yqr"
+path.s3tc="res://.godot/imported/hands_mat21 Base Color.png-1f2c0535edabe78e909ec33d016d0372.s3tc.ctex"
+path.etc2="res://.godot/imported/hands_mat21 Base Color.png-1f2c0535edabe78e909ec33d016d0372.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "caac519de73b559b416d57509b53b94d"
+}
 
 [deps]
 
-source_file="res://addons/Textures of ground/red/texture_02.png"
-dest_files=["res://.godot/imported/texture_02.png-8a882c86c5c1e6ac1ec111014010ab4b.s3tc.ctex", "res://.godot/imported/texture_02.png-8a882c86c5c1e6ac1ec111014010ab4b.etc2.ctex"]
+source_file="res://3d models/hands_mat21 Base Color.png"
+dest_files=["res://.godot/imported/hands_mat21 Base Color.png-1f2c0535edabe78e909ec33d016d0372.s3tc.ctex", "res://.godot/imported/hands_mat21 Base Color.png-1f2c0535edabe78e909ec33d016d0372.etc2.ctex"]
 
 [params]
 

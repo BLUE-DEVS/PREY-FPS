@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://coe3spoydh2v6"
-path="res://.godot/imported/hands.glb-66a8163f7b3ccb46182643c969d80ebd.scn"
+uid="uid://bpnlgesmykppd"
+path="res://.godot/imported/Assault Rifle.glb-928fa27c19b61c0be91dcbbd26c225d7.scn"
 
 [deps]
 
-source_file="res://Others/hands.glb"
-dest_files=["res://.godot/imported/hands.glb-66a8163f7b3ccb46182643c969d80ebd.scn"]
+source_file="res://3d models/Assault Rifle.glb"
+dest_files=["res://.godot/imported/Assault Rifle.glb-928fa27c19b61c0be91dcbbd26c225d7.scn"]
 
 [params]
 

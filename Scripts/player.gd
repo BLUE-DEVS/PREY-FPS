@@ -11,7 +11,7 @@ var screen_dir = Vector2.ZERO
 var sliding:bool = false
 @onready var ani: AnimationPlayer = $AnimationPlayer
 var sliding_time:float= 0.0
-var max_sliding_time:float= 1.0
+var max_sliding_time:float= 0.7
 var slide_sp:int=17
 var _crouching :bool 
 var can_wall_jump :bool= true
@@ -34,6 +34,7 @@ func _ready() -> void:
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
 	current_hand_state = hand_state.with_sniper
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
@@ -41,6 +42,17 @@ func _unhandled_input(_event: InputEvent) -> void:
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
+	
+	if Input.is_action_pressed("change_wea"):
+		pass
+	
+	#if Input.is_action_pressed("shoot"):
+		#if shoot_dec.is_colliding() and not is_reloading:
+			#var _collider = shoot_dec.get_collider()
+			#if _collider is Killable:
+				#_collider.damage()
+		#_reload()
+		#$sni_shot.play()
 
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()
@@ -184,15 +196,18 @@ func player_setting_unvisible():
 	$CanvasLayer/back_button_pla.visible = false
 
 func _on_shoot_butt_pressed() -> void:
-	if shoot_dec.is_colliding() and not is_reloading:
-		var _collider = shoot_dec.get_collider()
-		if _collider is Killable:
-			_collider.damage()
-	_reload()
+	if not is_reloading:
+		if shoot_dec.is_colliding():
+			var _collider = shoot_dec.get_collider()
+			if _collider is Killable:
+				_collider.damage()
+		$sni_shot.play()
+		_reload()
 
 
 func _reload():
+	$sni_rel.play()
 	is_reloading = true
-	#ani.current_animation = "sniper_reload"
-	await get_tree().create_timer(1).timeout
+	ani.current_animation = "sniper_reload"
+	await $sni_rel.finished
 	is_reloading = false

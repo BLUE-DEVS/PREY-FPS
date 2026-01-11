@@ -10,16 +10,27 @@ var JUMP_VELOCITY:int = 10
 func _process(_delta: float) -> void:
 	if heath <= 0:
 		queue_free()
-
-
+	look_at(player.global_position)
+	make_path()
+func _physics_process(_delta: float) -> void:
+	var _dir = to_local(nav_agent.get_next_path_position()).normalized()
+	velocity = _dir*SPEED
 
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
 
-
 	move_and_slide()
+
+
+func make_path() -> void:
+	nav_agent.target_position = player.global_position
+
 
 func damage():
 	var _damage = randi_range(50,70)
 	heath -= _damage
 	print(_damage)
+
+
+func _on_timer_timeout() -> void:
+	pass
