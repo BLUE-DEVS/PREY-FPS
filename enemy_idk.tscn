@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://n5rsl2hjyxny"]
+
+[ext_resource type="Script" uid="uid://dql6fbh4kgfjd" path="res://enemy_idk.gd" id="1_cbp1w"]
+[ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="1_ng0jq"]
+[ext_resource type="PackedScene" uid="uid://bku087a425x3r" path="res://Scenes/assault_rifle.tscn" id="2_57p7k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57p7k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbp1w"]
+albedo_texture = ExtResource("1_ng0jq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xtmv"]
+material = SubResource("StandardMaterial3D_cbp1w")
+
+[sub_resource type="Animation" id="Animation_py6rs"]
+resource_name = "ran_mov1"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.4325652, 1.7171158, 0), Vector3(-2.173378, -0.44890308, 0), Vector3(1.2690299, 0.39738977, 0), Vector3(-1.5437688, 1.1014072, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_22gl6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_movbt"]
+resource_name = "ran_mov2"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 1.02, 1.93, 3, 4.02, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.50986266, 0, 0), Vector3(-2.0739017, 2.3113952, 0), Vector3(-3.281723, 0.11425495, 0), Vector3(1.8401442, 2.5173447, 0), Vector3(-2.6358788, 2.234692, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vclg6"]
+_data = {
+&"RESET": SubResource("Animation_22gl6"),
+&"ran_mov1": SubResource("Animation_py6rs"),
+&"ran_mov2": SubResource("Animation_movbt")
+}
+
+[node name="enemy_idk" type="Node3D"]
+script = ExtResource("1_cbp1w")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_57p7k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_8xtmv")
+
+[node name="Assault Rifle" parent="CharacterBody3D" instance=ExtResource("2_57p7k")]
+transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, 0.5626085, 0, -1.3752549)
+
+[node name="Assault Rifle2" parent="CharacterBody3D" instance=ExtResource("2_57p7k")]
+transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, -0.58577967, 0, -1.3752549)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vclg6")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

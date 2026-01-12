@@ -4,11 +4,15 @@ var heath:int=100
 var SPEED :float= randi_range(6,10)
 var JUMP_VELOCITY:int = 17
 @onready var nav_agen: NavigationAgent3D = $NavigationAgent3D
-@onready var player = get_tree().get_nodes_in_group("player_gro")[0]
+@onready var player = null #get_tree().get_nodes_in_group("player_gro")[0]
 @onready var ani: AnimationPlayer = $"ninja again/AnimationPlayer"
 @onready var ray: RayCast3D = $RayCast3D
 var _can_jump :bool = true
 var run:bool=true       
+
+func _ready() -> void:
+	ani.current_animation = "jump"
+
 
 func _process(_delta: float) -> void:
 
@@ -18,7 +22,6 @@ func _process(_delta: float) -> void:
 			_can_jump = false
 			run = false
 			ani.current_animation = "jump"
-			rotation.y += 90
 			await ani.animation_finished
 			ani.current_animation = "run"
 			_can_jump = true
@@ -31,7 +34,7 @@ func _process(_delta: float) -> void:
 		_can_jump = false
 		player = self
 		ani.current_animation = "diee"
-		await ani.animation_finished
+		await get_tree().create_timer(1).timeout
 		queue_free()
 
 	nav_agen.set_target_position(player.global_position)

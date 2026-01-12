@@ -33,7 +33,7 @@ func _ready() -> void:
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
-	current_hand_state = hand_state.with_sniper
+	current_hand_state = hand_state.blank
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(_event: InputEvent) -> void:
