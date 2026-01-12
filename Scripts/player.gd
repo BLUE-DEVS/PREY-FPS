@@ -204,7 +204,6 @@ func _on_shoot_butt_pressed() -> void:
 		$sni_shot.play()
 		_reload()
 
-
 func _reload():
 	$sni_rel.play()
 	is_reloading = true
