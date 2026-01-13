@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=32 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
 [ext_resource type="Texture2D" uid="uid://e72mnwxm3y8t" path="res://addons/Textures of ground/purple/texture_01.png" id="16_igrcy"]
-[ext_resource type="AudioStream" uid="uid://bilwrbvp587gq" path="res://Others/audio-editor-output.mp3" id="16_qqcod"]
-[ext_resource type="AudioStream" uid="uid://dwg8lc4qq52ir" path="res://Others/sniper-reload-made-with-Voicemod.mp3" id="17_igrcy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -622,12 +620,6 @@ action = "change_wea"
 libraries = {
 &"": SubResource("AnimationLibrary_vgqql")
 }
-
-[node name="sni_shot" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_qqcod")
-
-[node name="sni_rel" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_igrcy")
 
 [connection signal="gui_input" from="CanvasLayer/settings" to="." method="_on_texture_button_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]

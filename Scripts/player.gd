@@ -19,13 +19,7 @@ var current_hand_state = hand_state.blank
 @onready var smg: Node3D = $"neck/Assault Rifle"
 var is_reloading:bool=false
 
-
-#DO NO TOUCH OR CHANGE abhi me or bhi kaam karuga! ;D
-## ok bro nhi karunaga bas dekh raha hu :D
-#or ye Fullscreen ko hata do plzz😭😭
-#I added wall jumping (particals apka kaam h :)
-## what particals? ye to hamari script me bhi nhi tha?
-#muzzle flash,jump,slide,and run me speedy lines
+#bhai thode audios aad kr dena plz
 
 #------------------------------------------------------------------
 
@@ -42,17 +36,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
-	
-	if Input.is_action_pressed("change_wea"):
-		pass
-	
-	#if Input.is_action_pressed("shoot"):
-		#if shoot_dec.is_colliding() and not is_reloading:
-			#var _collider = shoot_dec.get_collider()
-			#if _collider is Killable:
-				#_collider.damage()
-		#_reload()
-		#$sni_shot.play()
 
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()

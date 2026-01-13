@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://b7scace3gmi38"]
 
 [ext_resource type="PackedScene" uid="uid://thkrcxofev2k" path="res://Scenes/player.tscn" id="1_nvaej"]
-[ext_resource type="PackedScene" uid="uid://n5rsl2hjyxny" path="res://enemy_idk.tscn" id="4_avk8s"]
+[ext_resource type="PackedScene" uid="uid://n5rsl2hjyxny" path="res://Scenes/enemy_idk.tscn" id="4_avk8s"]
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="4_ruji2"]
 [ext_resource type="Texture2D" uid="uid://dfaciceeg6bbg" path="res://3d models/us_map_Prototype_Grid_Gray_10-512x512.png" id="5_ruji2"]
 
@@ -15,6 +15,7 @@ background_mode = 2
 sky = SubResource("Sky_ruji2")
 sky_rotation = Vector3(0, 0.49741885, -0.034906585)
 tonemap_mode = 2
+glow_enabled = true
 fog_enabled = true
 fog_density = 0.005
 
@@ -134,6 +135,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.5
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.555752, 9.523041, -6.750926)
 
 [node name="enemy_idk3" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.555752, 9.523041, 15.329392)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5801325, 2.034473, -0.9577093)
 
 [editable path="Player"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://toh4v870ni52"]
+
+[ext_resource type="Script" uid="uid://cg7sb0knthvxi" path="res://Scripts/bullet.gd" id="1_oduel"]
+[ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="2_ycag2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rtl8c"]
+size = Vector3(0.1, 0.1, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7oki"]
+albedo_color = Color(0, 0.61960787, 0.98039216, 1)
+emission_enabled = true
+emission = Color(0, 0.6206668, 0.98, 1)
+emission_energy_multiplier = 9.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_v8qja"]
+material = SubResource("StandardMaterial3D_v7oki")
+size = Vector3(0.1, 0.1, 0.4)
+
+[node name="bullet" type="Area3D"]
+script = ExtResource("1_oduel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 0, 0, 0)
+shape = SubResource("BoxShape3D_rtl8c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 0, 0, 0)
+mesh = SubResource("BoxMesh_v8qja")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ycag2")
+volume_db = 23.58
+pitch_scale = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
