@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://n5rsl2hjyxny"]
+[gd_scene load_steps=12 format=3 uid="uid://n5rsl2hjyxny"]
 
 [ext_resource type="Script" uid="uid://dql6fbh4kgfjd" path="res://Scripts/enemy_idk.gd" id="1_cbp1w"]
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="1_ng0jq"]
 [ext_resource type="PackedScene" uid="uid://bku087a425x3r" path="res://Scenes/assault_rifle.tscn" id="2_57p7k"]
+[ext_resource type="AudioStream" uid="uid://206bo5f8ia86" path="res://Others/submachine-gun-79846.mp3" id="4_o2swh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57p7k"]
 
@@ -21,6 +22,18 @@ tracks/0/path = NodePath("CharacterBody3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -69,11 +82,11 @@ _data = {
 }
 
 [node name="enemy_idk" type="Node3D"]
-script = ExtResource("1_cbp1w")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 collision_layer = 9
 collision_mask = 9
+script = ExtResource("1_cbp1w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("BoxShape3D_57p7k")
@@ -99,5 +112,12 @@ autostart = true
 [node name="Timer2" type="Timer" parent="."]
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_o2swh")
+volume_db = -10.0
+unit_size = 58.29
+pitch_scale = 1.81
+max_distance = 592.68
+
+[connection signal="timeout" from="Timer" to="CharacterBody3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="CharacterBody3D" method="_on_timer_2_timeout"]

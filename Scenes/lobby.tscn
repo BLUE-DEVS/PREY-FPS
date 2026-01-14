@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://b7scace3gmi38"]
+[gd_scene load_steps=14 format=4 uid="uid://b7scace3gmi38"]
 
 [ext_resource type="PackedScene" uid="uid://thkrcxofev2k" path="res://Scenes/player.tscn" id="1_nvaej"]
 [ext_resource type="PackedScene" uid="uid://n5rsl2hjyxny" path="res://Scenes/enemy_idk.tscn" id="4_avk8s"]
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="4_ruji2"]
+[ext_resource type="AudioStream" uid="uid://eqdmssmnyfk4" path="res://Others/DRIVE(chosic.com).mp3" id="5_jigxi"]
 [ext_resource type="Texture2D" uid="uid://dfaciceeg6bbg" path="res://3d models/us_map_Prototype_Grid_Gray_10-512x512.png" id="5_ruji2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_avk8s"]
@@ -153,6 +154,23 @@ size = Vector3(8, 1, 5.815)
 material = SubResource("StandardMaterial3D_4233d")
 
 [node name="enemy_idk" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 14.58185, 2.8083787, -0.86790943)
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, -13.878374, 2.8083787, -0.86790943)
+
+[node name="enemy_idk2" parent="." instance=ExtResource("4_avk8s")]
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 20.14528, 8.763039, -26.54456)
+
+[node name="enemy_idk3" parent="." instance=ExtResource("4_avk8s")]
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, -13.878374, 20.77642, -14.77463)
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jigxi")
+autoplay = true
+parameters/looping = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
 
 [editable path="Player"]

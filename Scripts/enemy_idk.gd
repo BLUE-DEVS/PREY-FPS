@@ -1,9 +1,9 @@
-extends Node3D
+extends CharacterBody3D
 
 class_name Enemy
 
 @onready var player = get_tree().get_nodes_in_group("player_gro")[0]
-@onready var ani: AnimationPlayer = $AnimationPlayer
+@onready var ani: AnimationPlayer = $"../AnimationPlayer"
 var bullet = preload("res://Scenes/bullet.tscn")
 var health :int=100
 
@@ -18,9 +18,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if health <= 0:
-		print("ahhahhhahaha")
 		queue_free()
-
 
 	look_at(player.global_position)
 
@@ -38,14 +36,16 @@ func _on_timer_timeout() -> void:
 func spawn_bul():
 	var _bul_scene = bullet.instantiate()
 	add_child(_bul_scene)
-	_bul_scene.global_position = $"CharacterBody3D/Assault Rifle".global_position
-	_bul_scene.transform.basis = $"CharacterBody3D/Assault Rifle".transform.basis
+	_bul_scene.global_position = $"Assault Rifle".global_position
+	_bul_scene.transform.basis = $"Assault Rifle".transform.basis
+	$"../AudioStreamPlayer3D".play()
 
 func spawn_bul2():
 	var _bul_scene = bullet.instantiate()
 	add_child(_bul_scene)
-	_bul_scene.global_position = $"CharacterBody3D/Assault Rifle2".global_position
-	_bul_scene.transform.basis = $"CharacterBody3D/Assault Rifle2".transform.basis
+	_bul_scene.global_position = $"Assault Rifle2".global_position
+	_bul_scene.transform.basis = $"Assault Rifle2".transform.basis
+	$"../AudioStreamPlayer3D".play()
 
 func _on_timer_2_timeout() -> void:
 	var _time_diff:float=randf_range(0.1,0.5)
@@ -54,7 +54,5 @@ func _on_timer_2_timeout() -> void:
 	spawn_bul2()
 
 
-
 func damage(_amount:int):
 	health -= _amount
-	print("uuuuuuuuuuuuuuu")

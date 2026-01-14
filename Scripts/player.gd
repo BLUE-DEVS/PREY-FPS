@@ -19,17 +19,18 @@ var can_wall_jump :bool= true
 var current_hand_state = hand_state.blank
 @onready var smg: Node3D = $"neck/Assault Rifle"
 var is_reloading:bool=false
+@onready var bgm: AudioStreamPlayer = $"../bgm"
 
 #bhai thode audios add kr dena plz
 
 #------------------------------------------------------------------
 
 func _ready() -> void:
+
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
 	current_hand_state = hand_state.with_plasma
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
@@ -37,6 +38,18 @@ func _unhandled_input(_event: InputEvent) -> void:
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
+#This is working but it erritates a bit.
+				#⬇⬇⬇
+	#if Input.is_action_pressed("shoot"):
+		#if not is_reloading:
+			#if shoot_dec.is_colliding():
+				#var _collider = shoot_dec.get_collider()
+				#if _collider is Enemy:
+					#_collider.damage(25)
+			#_reload()
+			#$"CanvasLayer/shot sound".play()
+			#ani2.current_animation = "shot"
+			#await ani.animation_finished
 
 	if UnivarsalScript.ply_helath <=0 and not ded:
 		die()
@@ -187,13 +200,15 @@ func _on_shoot_butt_pressed() -> void:
 	if not is_reloading:
 		if shoot_dec.is_colliding():
 			var _collider = shoot_dec.get_collider()
-			if _collider.is_class("Enemy"):
-				_collider.queue_free()
-				print("hjrofvrerrfr")
+			if _collider is Enemy:
+				_collider.damage(25)
 		_reload()
 		$"CanvasLayer/shot sound".play()
 		ani2.current_animation = "shot"
 		await ani.animation_finished
+
+
+
 
 
 func _reload():
@@ -209,3 +224,12 @@ func die():
 	#await ani.animation_finished
 	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_lobby.tscn")
 	ded = true
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.
+	
+
+func change_bgm_vol():
+	var _vol = randi_range(-29,-9)
+	bgm.volume_db = _vol
