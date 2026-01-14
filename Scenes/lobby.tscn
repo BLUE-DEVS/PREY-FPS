@@ -128,13 +128,31 @@ collision_mask = 65
 size = Vector3(8, 6.5565186, 5.815)
 material = SubResource("StandardMaterial3D_4233d")
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.958497, 0, 0.2851029, 0, 1, 0, -0.2851029, 0, -0.958497, 21.13004, 12.058401, -13.790885)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.95353085, 0.101664014, 0.28362572, 0.09744465, 0.9948188, -0.028984705, -0.2851029, 0, -0.958497, 8.798818, 14.78087, -20.816692)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.958497, 0, 0.2851029, 0, 1, 0, -0.2851029, 0, -0.958497, -6.1544533, 17.284283, -13.473643)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
 [node name="enemy_idk" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.555752, 9.523041, 4.4731264)
-
-[node name="enemy_idk2" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.555752, 9.523041, -6.750926)
-
-[node name="enemy_idk3" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5801325, 2.034473, -0.9577093)
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 14.58185, 2.8083787, -0.86790943)
 
 [editable path="Player"]

@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var ani2: AnimationPlayer = $AnimationPlayer2
 var ded:bool=false
 enum hand_state {blank,with_plasma,with_smg}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
@@ -27,7 +28,7 @@ func _ready() -> void:
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
-	current_hand_state = hand_state.with_smg
+	current_hand_state = hand_state.with_plasma
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -49,10 +50,12 @@ func _physics_process(_delta: float) -> void:
 		ani.current_animation = "gun hold"
 	elif current_hand_state == hand_state.with_smg:
 		smg.show()
+		$"neck/plasma gun".hide()
 		ani.current_animation = "gun hold"
 		$CanvasLayer/shoot_butt.show()
 	else:
 		smg.hide()
+		$"neck/plasma gun".hide()
 		$CanvasLayer/shoot_butt.hide()
 		if Input.is_action_pressed("w"):
 			ani.current_animation = "run"
@@ -184,12 +187,18 @@ func _on_shoot_butt_pressed() -> void:
 	if not is_reloading:
 		if shoot_dec.is_colliding():
 			var _collider = shoot_dec.get_collider()
-			if _collider is Killable:
-				_collider.damage()
+			if _collider.is_class("Enemy"):
+				_collider.queue_free()
+				print("hjrofvrerrfr")
 		_reload()
+		$"CanvasLayer/shot sound".play()
+		ani2.current_animation = "shot"
+		await ani.animation_finished
+
 
 func _reload():
 	is_reloading = true
+	await get_tree().create_timer(0.1).timeout
 	is_reloading = false
 
 func die():

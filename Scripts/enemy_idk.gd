@@ -1,5 +1,6 @@
 extends Node3D
-class_name Killable
+
+class_name Enemy
 
 @onready var player = get_tree().get_nodes_in_group("player_gro")[0]
 @onready var ani: AnimationPlayer = $AnimationPlayer
@@ -17,10 +18,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if health <= 0:
+		print("ahhahhhahaha")
 		queue_free()
-
-
-
 
 
 	look_at(player.global_position)
@@ -56,6 +55,6 @@ func _on_timer_2_timeout() -> void:
 
 
 
-func damage():
-	health -= 50
-	print(health)
+func damage(_amount:int):
+	health -= _amount
+	print("uuuuuuuuuuuuuuu")
