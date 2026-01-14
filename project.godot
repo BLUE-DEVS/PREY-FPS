@@ -12,8 +12,9 @@ config_version=5
 
 config/name="Prey - FPS"
 config/tags=PackedStringArray("current")
-run/main_scene="uid://b7scace3gmi38"
+run/main_scene="uid://dmpj34wg0376q"
 config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/show_image=false
 
 [autoload]
 
@@ -22,7 +23,6 @@ UnivarsalScript="*res://Scripts/univarsal_script.gd"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [file_customization]
 

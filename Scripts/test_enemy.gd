@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name Killable
+
 var heath:int=100
 var SPEED :float= randi_range(6,10)
 var JUMP_VELOCITY:int = 17

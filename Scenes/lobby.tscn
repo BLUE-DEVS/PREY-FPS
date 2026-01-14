@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://b7scace3gmi38"]
+[gd_scene load_steps=14 format=4 uid="uid://b7scace3gmi38"]
 
 [ext_resource type="PackedScene" uid="uid://thkrcxofev2k" path="res://Scenes/player.tscn" id="1_nvaej"]
 [ext_resource type="PackedScene" uid="uid://n5rsl2hjyxny" path="res://Scenes/enemy_idk.tscn" id="4_avk8s"]
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="4_ruji2"]
+[ext_resource type="AudioStream" uid="uid://eqdmssmnyfk4" path="res://Others/DRIVE(chosic.com).mp3" id="5_jigxi"]
 [ext_resource type="Texture2D" uid="uid://dfaciceeg6bbg" path="res://3d models/us_map_Prototype_Grid_Gray_10-512x512.png" id="5_ruji2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_avk8s"]
@@ -128,13 +129,48 @@ collision_mask = 65
 size = Vector3(8, 6.5565186, 5.815)
 material = SubResource("StandardMaterial3D_4233d")
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.958497, 0, 0.2851029, 0, 1, 0, -0.2851029, 0, -0.958497, 21.13004, 12.058401, -13.790885)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.95353085, 0.101664014, 0.28362572, 0.09744465, 0.9948188, -0.028984705, -0.2851029, 0, -0.958497, 8.798818, 14.78087, -20.816692)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.958497, 0, 0.2851029, 0, 1, 0, -0.2851029, 0, -0.958497, -6.1544533, 17.284283, -13.473643)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
 [node name="enemy_idk" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.555752, 9.523041, 4.4731264)
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, -13.878374, 2.8083787, -0.86790943)
 
 [node name="enemy_idk2" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.555752, 9.523041, -6.750926)
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 20.14528, 8.763039, -26.54456)
 
 [node name="enemy_idk3" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5801325, 2.034473, -0.9577093)
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, -13.878374, 20.77642, -14.77463)
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jigxi")
+autoplay = true
+parameters/looping = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
 
 [editable path="Player"]

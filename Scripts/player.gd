@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
-enum hand_state {blank,with_sniper,with_smg}
+@onready var ani2: AnimationPlayer = $AnimationPlayer2
+var ded:bool=false
+enum hand_state {blank,with_plasma,with_smg}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
-@onready var sniper: Node3D= $"neck/Sniper Rifle"
 var neck_x := 0.0
 var SPEED :float= 13
 var JUMP_VELOCITY:int = 10
@@ -18,17 +19,18 @@ var can_wall_jump :bool= true
 var current_hand_state = hand_state.blank
 @onready var smg: Node3D = $"neck/Assault Rifle"
 var is_reloading:bool=false
+@onready var bgm: AudioStreamPlayer = $"../bgm"
 
-#bhai thode audios aad kr dena plz
+#bhai thode audios add kr dena plz
 
 #------------------------------------------------------------------
 
 func _ready() -> void:
+
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
-	current_hand_state = hand_state.blank
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	current_hand_state = hand_state.with_plasma
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
@@ -36,23 +38,37 @@ func _unhandled_input(_event: InputEvent) -> void:
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
+#This is working but it erritates a bit.
+				#⬇⬇⬇
+	#if Input.is_action_pressed("shoot"):
+		#if not is_reloading:
+			#if shoot_dec.is_colliding():
+				#var _collider = shoot_dec.get_collider()
+				#if _collider is Enemy:
+					#_collider.damage(25)
+			#_reload()
+			#$"CanvasLayer/shot sound".play()
+			#ani2.current_animation = "shot"
+			#await ani.animation_finished
+
+	if UnivarsalScript.ply_helath <=0 and not ded:
+		die()
 
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()
 
-	if current_hand_state == hand_state.with_sniper:
-		sniper.show()
+	if current_hand_state == hand_state.with_plasma:
 		smg.hide()
 		$CanvasLayer/shoot_butt.show()
 		ani.current_animation = "gun hold"
 	elif current_hand_state == hand_state.with_smg:
-		sniper.hide()
 		smg.show()
+		$"neck/plasma gun".hide()
 		ani.current_animation = "gun hold"
 		$CanvasLayer/shoot_butt.show()
 	else:
 		smg.hide()
-		sniper.hide()
+		$"neck/plasma gun".hide()
 		$CanvasLayer/shoot_butt.hide()
 		if Input.is_action_pressed("w"):
 			ani.current_animation = "run"
@@ -80,8 +96,6 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("w"):
 		var _tween = get_tree().create_tween()
 		_tween.tween_property($neck/Camera3D,"fov",90,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-
 
 	if Input.is_action_just_released("w"):
 		var _tween = get_tree().create_tween()
@@ -114,6 +128,10 @@ func _physics_process(_delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
+
+
+
+
 func slide():
 	sliding = true
 	sliding_time = max_sliding_time
@@ -182,14 +200,36 @@ func _on_shoot_butt_pressed() -> void:
 	if not is_reloading:
 		if shoot_dec.is_colliding():
 			var _collider = shoot_dec.get_collider()
-			if _collider is Killable:
-				_collider.damage()
-		$sni_shot.play()
+			if _collider is Enemy:
+				_collider.damage(25)
 		_reload()
+		$"CanvasLayer/shot sound".play()
+		ani2.current_animation = "shot"
+		await ani.animation_finished
+
+
+
+
 
 func _reload():
-	$sni_rel.play()
 	is_reloading = true
-	ani.current_animation = "sniper_reload"
-	await $sni_rel.finished
+	await get_tree().create_timer(0.1).timeout
 	is_reloading = false
+
+func die():
+	slide_sp = 0
+	SPEED = 0
+	JUMP_VELOCITY = 0 
+	ani.play("die")
+	#await ani.animation_finished
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_lobby.tscn")
+	ded = true
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.
+	
+
+func change_bgm_vol():
+	var _vol = randi_range(-29,-9)
+	bgm.volume_db = _vol

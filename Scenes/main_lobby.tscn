@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=4 uid="uid://dmpj34wg0376q"]
 
-[ext_resource type="Texture2D" uid="uid://c4vwfejtu0pjc" path="res://space.png" id="1_0hucx"]
+[ext_resource type="Texture2D" uid="uid://c4vwfejtu0pjc" path="res://Others/space.png" id="1_0hucx"]
 [ext_resource type="Texture2D" uid="uid://dkix7m5a5kujl" path="res://3d models/lobby_color_palet.png" id="1_vtvjj"]
 [ext_resource type="Script" uid="uid://dq3q4peg7nrxx" path="res://Scripts/main_ui.gd" id="2_0hucx"]
 [ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3" id="6_heuf8"]
