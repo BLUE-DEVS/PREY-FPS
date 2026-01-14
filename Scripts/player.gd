@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-enum hand_state {blank,with_sniper,with_smg}
+var ded:bool=false
+enum hand_state {blank,with_plasma,with_smg}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
-@onready var sniper: Node3D= $"neck/Sniper Rifle"
 var neck_x := 0.0
 var SPEED :float= 13
 var JUMP_VELOCITY:int = 10
@@ -19,7 +19,7 @@ var current_hand_state = hand_state.blank
 @onready var smg: Node3D = $"neck/Assault Rifle"
 var is_reloading:bool=false
 
-#bhai thode audios aad kr dena plz
+#bhai thode audios add kr dena plz
 
 #------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ func _ready() -> void:
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
-	current_hand_state = hand_state.blank
+	current_hand_state = hand_state.with_smg
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -37,22 +37,22 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 
+	if UnivarsalScript.ply_helath <=0 and not ded:
+		die()
+
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()
 
-	if current_hand_state == hand_state.with_sniper:
-		sniper.show()
+	if current_hand_state == hand_state.with_plasma:
 		smg.hide()
 		$CanvasLayer/shoot_butt.show()
 		ani.current_animation = "gun hold"
 	elif current_hand_state == hand_state.with_smg:
-		sniper.hide()
 		smg.show()
 		ani.current_animation = "gun hold"
 		$CanvasLayer/shoot_butt.show()
 	else:
 		smg.hide()
-		sniper.hide()
 		$CanvasLayer/shoot_butt.hide()
 		if Input.is_action_pressed("w"):
 			ani.current_animation = "run"
@@ -80,8 +80,6 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("w"):
 		var _tween = get_tree().create_tween()
 		_tween.tween_property($neck/Camera3D,"fov",90,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-
 
 	if Input.is_action_just_released("w"):
 		var _tween = get_tree().create_tween()
@@ -114,6 +112,10 @@ func _physics_process(_delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
+
+
+
+
 func slide():
 	sliding = true
 	sliding_time = max_sliding_time
@@ -184,12 +186,17 @@ func _on_shoot_butt_pressed() -> void:
 			var _collider = shoot_dec.get_collider()
 			if _collider is Killable:
 				_collider.damage()
-		$sni_shot.play()
 		_reload()
 
 func _reload():
-	$sni_rel.play()
 	is_reloading = true
-	ani.current_animation = "sniper_reload"
-	await $sni_rel.finished
 	is_reloading = false
+
+func die():
+	slide_sp = 0
+	SPEED = 0
+	JUMP_VELOCITY = 0 
+	ani.play("die")
+	#await ani.animation_finished
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_lobby.tscn")
+	ded = true

@@ -8,23 +8,11 @@ func _ready() -> void:
 	sesivity_slider.value = UnivarsalScript.sensivity
 	$ui_bg_muisc.play(1)
 
-#Bhai plx UI ko accha bnana ;_; or accha banao and setting menu me fov sensitivityect daal dena
+
 ## ok bhai me univarsal logic ko global script bana raha hu don't khujli it
 
 
 ## play button logic
-
-	
-			
-
-	
-	
-
-
-	
-		
-
-	
 
 ## when play pressed scene changed!
 func _input(event: InputEvent) -> void:
@@ -32,11 +20,8 @@ func _input(event: InputEvent) -> void:
 		$"../ui_animations".play("game_start")
 		await get_tree().create_timer(2.5).timeout
 		get_tree().change_scene_to_file("res://Scenes/lobby.tscn")
-		
-		
-		
 
-	
+
 func setting_visible():
 	$play.visible = false
 	$quit.visible = false
@@ -58,8 +43,6 @@ func setting_not_vis():
 
 func _on_sesivity_slider_value_changed(_value: float) -> void:
 	UnivarsalScript.sensivity = _value
-	 
-	
 
 
 func _on_music_slider_value_changed(_value: float) -> void:

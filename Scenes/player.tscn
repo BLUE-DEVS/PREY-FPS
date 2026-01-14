@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=31 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://bt2nlqinsssdx" path="res://ui_elements/main_ui bakground.png" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://bxjas6orr2322" path="res://Scenes/plasma_gun.tscn" id="4_fd4e3"]
 [ext_resource type="PackedScene" uid="uid://bku087a425x3r" path="res://Scenes/assault_rifle.tscn" id="4_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://ctb27c7wk180s" path="res://ui_elements/settings ion.png" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://b052ty4ufmnmg" path="res://ui_elements/resume_button.png" id="5_fkybt"]
@@ -10,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://pincucfsgrwq" path="res://ui_elements/quit_match.png" id="6_8erm5"]
 [ext_resource type="AudioStream" uid="uid://6b81x00ntvsi" path="res://ui_elements/ui_sound_effects/keyboard-click-327728.mp3" id="7_8erm5"]
 [ext_resource type="Texture2D" uid="uid://7b7iue2gj1jy" path="res://ui_elements/shoot button.png" id="9_f1ek2"]
-[ext_resource type="PackedScene" uid="uid://c2uwtvd8q3orw" path="res://Scenes/sniper_rifle.tscn" id="10_tx1dd"]
 [ext_resource type="Texture2D" uid="uid://ewp047up120i" path="res://ui_elements/jump icon.png" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
@@ -158,26 +158,90 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("neck/Sniper Rifle:position")
+tracks/5/path = NodePath("neck:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.47912288, 0.6142032, -0.6377995)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("neck/Sniper Rifle:rotation")
+tracks/6/path = NodePath("CanvasLayer/ColorRect:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.13121386, 0)]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fd4e3"]
+resource_name = "die"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.39, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.27217185), Vector3(0, 0, 0.3), Vector3(0, -0.96028304, 1.3643423)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("neck:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.43333334, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.17528345, 0, 0), Vector3(0.17453292, 0, 0), Vector3(1.0997494, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:self_modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.7666667),
+"transitions": PackedFloat32Array(1, 3.0314343, 0.9999998),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_h4iuc"]
@@ -234,26 +298,14 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("neck/Sniper Rifle:position")
+tracks/4/path = NodePath("CanvasLayer/ColorRect:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.47912288, 0.6142032, -0.6377995)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("neck/Sniper Rifle:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.13121386, 0)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_vgqql"]
@@ -319,6 +371,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.32480934, -2.6487951, 2.3466861)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_cvnsp"]
@@ -402,46 +466,14 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.23620462)]
 }
 
-[sub_resource type="Animation" id="Animation_gymyn"]
-resource_name = "shoot"
-length = 0.8
-
-[sub_resource type="Animation" id="Animation_fd4e3"]
-resource_name = "sniper_reload"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("neck/Sniper Rifle:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.47912288, 0.6142032, -0.6377995), Vector3(0.47912288, 1.3534832, -0.6377995), Vector3(0.479, 0.61, -0.638)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("neck/Sniper Rifle:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.13121386, 0), Vector3(-1.0324951, 2.8835337, -2.9187393), Vector3(0, 0.1308997, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
 _data = {
 &"RESET": SubResource("Animation_6t5aa"),
+&"die": SubResource("Animation_fd4e3"),
 &"gun hold": SubResource("Animation_h4iuc"),
 &"idle": SubResource("Animation_vgqql"),
 &"run": SubResource("Animation_cvnsp"),
-&"slide": SubResource("Animation_fkybt"),
-&"sniper shoot": SubResource("Animation_gymyn"),
-&"sniper_reload": SubResource("Animation_fd4e3")
+&"slide": SubResource("Animation_fkybt")
 }
 
 [node name="Player" type="CharacterBody3D" groups=["player_gro"]]
@@ -453,12 +485,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.22283351)
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7284069, 0)
-
-[node name="Sniper Rifle" parent="neck" instance=ExtResource("10_tx1dd")]
-transform = Transform3D(0.19828075, 0, 0.026167529, 0, 0.19999997, 0, -0.02616753, 0, 0.19828074, 0.47912288, 0.6142032, -0.6377995)
 
 [node name="hands" type="Node3D" parent="neck"]
 transform = Transform3D(0.11201458, 1.8174697e-07, -5.963948, 1.6651878, 5.7277737, 0.031275645, 5.726764, -1.6654816, 0.107559726, -0.14512613, 0, -0.22501221)
@@ -483,6 +513,9 @@ visible = false
 transform = Transform3D(1.4199997, 0, -4.440892e-16, 0, -1.0927846e-06, -0.9999998, 0, 24.999996, -4.3711385e-08, 5.9604645e-08, 0.6989008, 0.08317208)
 collision_mask = 8
 debug_shape_custom_color = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
+
+[node name="plasma gun" parent="neck" instance=ExtResource("4_fd4e3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.46637967, 0.43267667, -1.0769324)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -615,6 +648,14 @@ position = Vector2(962, 27.00003)
 scale = Vector2(0.0664063, 0.0664063)
 texture_normal = ExtResource("16_igrcy")
 action = "change_wea"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
