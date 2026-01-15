@@ -9,9 +9,6 @@ func _ready() -> void:
 	$ui_bg_muisc.play(1)
 
 
-## ok bhai me univarsal logic ko global script bana raha hu don't khujli it
-
-
 ## play button logic
 
 ## when play pressed scene changed!
@@ -19,6 +16,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEvent == Input.is_action_just_pressed("play"):
 		$"../ui_animations".play("game_start")
 		await get_tree().create_timer(2.5).timeout
+		UnivarsalScript.ply_helath = 100
 		get_tree().change_scene_to_file("res://Scenes/lobby.tscn")
 
 

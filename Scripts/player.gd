@@ -21,12 +21,12 @@ var current_hand_state = hand_state.blank
 var is_reloading:bool=false
 @onready var bgm: AudioStreamPlayer = $"../bgm"
 
+
 #bhai thode audios add kr dena plz
 
 #------------------------------------------------------------------
 
 func _ready() -> void:
-
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
@@ -38,6 +38,30 @@ func _unhandled_input(_event: InputEvent) -> void:
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
+	$CanvasLayer/health_bar.value = UnivarsalScript.ply_helath
+
+	if UnivarsalScript.ply_helath <= 50:
+		var _style = $CanvasLayer/health_bar.get_theme_stylebox("fill").duplicate()
+		_style.bg_color = Color.RED
+		$CanvasLayer/health_bar.add_theme_stylebox_override("fill", _style)
+	elif UnivarsalScript.ply_helath <= 70:
+		var _style = $CanvasLayer/health_bar.get_theme_stylebox("fill").duplicate()
+		_style.bg_color = Color.YELLOW
+		$CanvasLayer/health_bar.add_theme_stylebox_override("fill", _style)
+	else:
+		var _style = $CanvasLayer/health_bar.get_theme_stylebox("fill").duplicate()
+		_style.bg_color = Color.GREEN
+		$CanvasLayer/health_bar.add_theme_stylebox_override("fill", _style)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 #This is working but it erritates a bit.
 				#⬇⬇⬇
 	#if Input.is_action_pressed("shoot"):

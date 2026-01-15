@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://n5rsl2hjyxny"]
+[gd_scene load_steps=13 format=3 uid="uid://n5rsl2hjyxny"]
 
 [ext_resource type="Script" uid="uid://dql6fbh4kgfjd" path="res://Scripts/enemy_idk.gd" id="1_cbp1w"]
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="1_ng0jq"]
 [ext_resource type="PackedScene" uid="uid://bku087a425x3r" path="res://Scenes/assault_rifle.tscn" id="2_57p7k"]
 [ext_resource type="AudioStream" uid="uid://206bo5f8ia86" path="res://Others/submachine-gun-79846.mp3" id="4_o2swh"]
+[ext_resource type="PackedScene" uid="uid://ceoforlwujwro" path="res://Scenes/bot_drone.tscn" id="5_5kvp4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57p7k"]
 
@@ -84,6 +85,7 @@ _data = {
 [node name="enemy_idk" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.83, 0, 0, 0, 0.83, 0, 0, 0, 0.83, 0, 0, 0)
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_cbp1w")
@@ -95,10 +97,13 @@ shape = SubResource("BoxShape3D_57p7k")
 mesh = SubResource("BoxMesh_8xtmv")
 
 [node name="Assault Rifle" parent="CharacterBody3D" instance=ExtResource("2_57p7k")]
-transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, 0.5626085, 0, -1.3752549)
+transform = Transform3D(0.66843086, 0, 0.093941845, -0.013854679, 0.66761863, 0.09858115, -0.09291458, -0.09954998, 0.66112155, 0.6792603, 0.9025306, -1.3743091)
 
 [node name="Assault Rifle2" parent="CharacterBody3D" instance=ExtResource("2_57p7k")]
-transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, -0.58577967, 0, -1.3752549)
+transform = Transform3D(0.6649853, 0, -0.115843266, 0.017084735, 0.66761893, 0.09807303, 0.1145765, -0.09954999, 0.6577136, -0.55329347, 0.92346627, -1.2649128)
+
+[node name="Bot Drone" parent="CharacterBody3D" instance=ExtResource("5_5kvp4")]
+transform = Transform3D(0.6024097, 0, -1.0434041, 0, 1.2048193, 0, 1.0434041, 0, 0.6024097, 0, 0.2763346, 0.22218946)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

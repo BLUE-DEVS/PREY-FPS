@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=39 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
 [ext_resource type="Texture2D" uid="uid://e72mnwxm3y8t" path="res://addons/Textures of ground/purple/texture_01.png" id="16_igrcy"]
 [ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="17_qqcod"]
+[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://Others/Anton-Regular.ttf" id="18_igrcy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -93,6 +94,20 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qeybu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fs7ks"]
+bg_color = Color(0.5132329, 0.51323295, 0.51323277, 0.3372549)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6n3p"]
+bg_color = Color(0.2338334, 0.61, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -879,6 +894,28 @@ process_mode = 3
 stream = ExtResource("17_qqcod")
 volume_db = 11.68
 pitch_scale = 4.0
+
+[node name="health_bar" type="ProgressBar" parent="CanvasLayer" groups=["player_gro"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -265.0
+offset_top = -58.0
+offset_right = 146.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.47, 1.47)
+theme_override_colors/font_color = Color(0.91228896, 0.91228884, 0.91228914, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("18_igrcy")
+theme_override_styles/background = SubResource("StyleBoxFlat_fs7ks")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l6n3p")
+value = 100.0
+fill_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -14,7 +14,6 @@ func _ready() -> void:
 	await get_tree().create_timer(_time_diff).timeout
 	spawn_bul2()
 
-
 func _process(_delta: float) -> void:
 
 	if health <= 0:
@@ -56,3 +55,29 @@ func _on_timer_2_timeout() -> void:
 
 func damage(_amount:int):
 	health -= _amount
+	
+	$CollisionShape3D.position.z += 0.3
+	$MeshInstance3D.position.z += 0.3
+	$"Assault Rifle".position.z += 0.3
+	$"Assault Rifle2".position.z += 0.3
+	$"Bot Drone".position.z += 0.3
+
+	$CollisionShape3D.rotate_x(deg_to_rad(30))
+	$MeshInstance3D.rotate_x(deg_to_rad(30))
+	$"Assault Rifle".rotate_x(deg_to_rad(30))
+	$"Assault Rifle2".rotate_x(deg_to_rad(30))
+	$"Bot Drone".rotate_x(deg_to_rad(30))
+
+	await get_tree().create_timer(0.2).timeout
+
+	$CollisionShape3D.position.z -= 0.3
+	$MeshInstance3D.position.z -= 0.3
+	$"Assault Rifle".position.z -= 0.3
+	$"Assault Rifle2".position.z -= 0.3
+	$"Bot Drone".position.z -= 0.3
+
+	$CollisionShape3D.rotate_x(deg_to_rad(-30))
+	$MeshInstance3D.rotate_x(deg_to_rad(-30))
+	$"Assault Rifle".rotate_x(deg_to_rad(-30))
+	$"Assault Rifle2".rotate_x(deg_to_rad(-30))
+	$"Bot Drone".rotate_x(deg_to_rad(-30))
