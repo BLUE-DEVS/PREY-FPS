@@ -737,7 +737,7 @@ transform = Transform3D(0.4599999, 0, 0, 0, 0.4599999, 0, 0, 0, 0.4599999, 0.458
 visible = false
 
 [node name="shoot detecter" type="RayCast3D" parent="neck"]
-transform = Transform3D(1.4199997, 0, -4.440892e-16, 0, -1.0927846e-06, -0.9999998, 0, 24.999996, -4.3711385e-08, 5.9604645e-08, 0.6989008, 0.08317208)
+transform = Transform3D(-1.1076337, 0, -4.4408905e-16, 0, -3.2911687e-06, -0.99999964, 0, 75.29316, -4.371138e-08, 5.960463e-08, 0.6866358, 0.08317207)
 collision_mask = 8
 debug_shape_custom_color = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
 

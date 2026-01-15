@@ -67,7 +67,7 @@ func damage(_amount:int):
 	$"Assault Rifle".rotate_x(deg_to_rad(30))
 	$"Assault Rifle2".rotate_x(deg_to_rad(30))
 	$"Bot Drone".rotate_x(deg_to_rad(30))
-
+	$"../hit_par".restart(true)
 	await get_tree().create_timer(0.2).timeout
 
 	$CollisionShape3D.position.z -= 0.3

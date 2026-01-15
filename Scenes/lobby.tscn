@@ -154,13 +154,13 @@ size = Vector3(8, 1, 5.815)
 material = SubResource("StandardMaterial3D_4233d")
 
 [node name="enemy_idk" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, -13.878374, 2.8083787, -0.86790943)
+transform = Transform3D(1.945, 0, 0, 0, 1.945, 0, 0, 0, 1.945, -13.878374, 2.8083787, -0.86790943)
 
 [node name="enemy_idk2" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 20.14528, 8.763039, -26.54456)
+transform = Transform3D(1.945, 0, 0, 0, 1.945, 0, 0, 0, 1.945, 20.14528, 8.763039, -26.54456)
 
 [node name="enemy_idk3" parent="." instance=ExtResource("4_avk8s")]
-transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, -13.878374, 20.77642, -14.77463)
+transform = Transform3D(1.945, 0, 0, 0, 1.945, 0, 0, 0, 1.945, -13.878374, 20.77642, -14.77463)
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_jigxi")
