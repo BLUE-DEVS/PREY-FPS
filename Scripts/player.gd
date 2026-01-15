@@ -27,6 +27,7 @@ var is_reloading:bool=false
 
 func _ready() -> void:
 
+
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0

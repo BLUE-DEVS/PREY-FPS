@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkix7m5a5kujl"
-path.s3tc="res://.godot/imported/lobby_color_palet.png-308188716249daa4f68181ab8c34cdda.s3tc.ctex"
-path.etc2="res://.godot/imported/lobby_color_palet.png-308188716249daa4f68181ab8c34cdda.etc2.ctex"
+uid="uid://beysc86p1rrgc"
+path.s3tc="res://.godot/imported/lab2_0_color_palet.png-fde52dbb46c3fff2810d5c4fb6c9be29.s3tc.ctex"
+path.etc2="res://.godot/imported/lab2_0_color_palet.png-fde52dbb46c3fff2810d5c4fb6c9be29.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://3d models/lobby_color_palet.png"
-dest_files=["res://.godot/imported/lobby_color_palet.png-308188716249daa4f68181ab8c34cdda.s3tc.ctex", "res://.godot/imported/lobby_color_palet.png-308188716249daa4f68181ab8c34cdda.etc2.ctex"]
+source_file="res://3d models/lab2_0_color_palet.png"
+dest_files=["res://.godot/imported/lab2_0_color_palet.png-fde52dbb46c3fff2810d5c4fb6c9be29.s3tc.ctex", "res://.godot/imported/lab2_0_color_palet.png-fde52dbb46c3fff2810d5c4fb6c9be29.etc2.ctex"]
 
 [params]
 
