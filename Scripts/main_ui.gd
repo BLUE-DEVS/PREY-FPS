@@ -2,9 +2,12 @@ extends Control
 
 @onready var sesivity_slider: HSlider = $sesivity_slider
 @onready var ui_animations: AnimationPlayer = $"../ui_animations"
+@onready var player_anitions: AnimationPlayer = $"../main_player/player_anitions"
 
 
 func _ready() -> void:
+	player_anitions.play("CharacterArmature|CharacterArmature|CharacterArmature|Attacking")
+	
 	sesivity_slider.value = UnivarsalScript.sensivity
 	$ui_bg_muisc.play(1)
 
@@ -16,7 +19,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEvent == Input.is_action_just_pressed("play"):
 		$"../ui_animations".play("game_start")
 		await get_tree().create_timer(2.5).timeout
-		UnivarsalScript.ply_helath = 100
 		get_tree().change_scene_to_file("res://Scenes/lobby.tscn")
 
 
@@ -95,7 +97,7 @@ func _on_back_from_settings_gui_input(_event: InputEvent) -> void:
 		if _event.pressed:
 			$click_sound.play()
 			setting_not_vis()
-			$"../ui_animations".play("back_from_settings")
+			$"../ui_animations".play("back_from_setiings")
 			await get_tree().create_timer(1.9).timeout
 			$play.visible = true
 			$quit.visible = true
