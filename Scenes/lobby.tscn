@@ -171,6 +171,22 @@ parameters/looping = true
 wait_time = 10.0
 autostart = true
 
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.83890736, 0.5423566, 0.045648627, 0.47359398, 0.7687255, -0.4298486, -0.2682225, -0.33898422, -0.90174633, -15.79043, 21.767914, -2.0161352)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.958497, 0, 0.2851029, 0, 1, 0, -0.2851029, 0, -0.958497, -23.12714, 24.271372, 0.80125475)
+use_collision = true
+collision_layer = 65
+collision_mask = 65
+size = Vector3(8, 1, 5.815)
+material = SubResource("StandardMaterial3D_4233d")
+
 [connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
 
 [editable path="Player"]
