@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=43 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://pincucfsgrwq" path="res://ui_elements/quit_match.png" id="6_8erm5"]
 [ext_resource type="AudioStream" uid="uid://6b81x00ntvsi" path="res://ui_elements/ui_sound_effects/keyboard-click-327728.mp3" id="7_8erm5"]
 [ext_resource type="Texture2D" uid="uid://ewp047up120i" path="res://ui_elements/jump icon.png" id="11_gymyn"]
+[ext_resource type="Texture2D" uid="uid://7b7iue2gj1jy" path="res://ui_elements/shoot button.png" id="12_igrcy"]
 [ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
@@ -96,6 +97,15 @@ shadow_mesh = SubResource("ArrayMesh_qeybu")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqcod"]
 radius = 223.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fs7ks"]
+radius = 298.58
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_igrcy"]
+radius = 183.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6n3p"]
+radius = 289.27
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fs7ks"]
 bg_color = Color(0.5132329, 0.51323295, 0.51323277, 0.3372549)
@@ -852,28 +862,56 @@ volume_db = -15.035
 parameters/looping = false
 
 [node name="shoot_butt" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(947.00006, 473)
+position = Vector2(932.00006, 445)
 scale = Vector2(0.28240737, 0.30275553)
 shape = SubResource("CircleShape2D_qqcod")
 action = "shoot"
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/shoot_butt"]
+offset_left = -541.77075
+offset_top = -515.2672
+offset_right = 538.22925
+offset_bottom = 564.7328
+texture = ExtResource("12_igrcy")
+
 [node name="jump_butt" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(1011.00006, 254.00003)
+position = Vector2(1076, 303)
 scale = Vector2(0.11944446, 0.11944446)
-texture_normal = ExtResource("11_gymyn")
+shape = SubResource("CircleShape2D_fs7ks")
 action = "ui_accept"
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/jump_butt"]
+offset_left = -552.5581
+offset_top = -535.81396
+offset_right = 527.4419
+offset_bottom = 544.18604
+texture = ExtResource("11_gymyn")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/jump_butt"]
+offset_left = -669.7676
+offset_top = 1423.2556
+offset_right = 410.23242
+offset_bottom = 2503.2559
+texture = ExtResource("12_ukyrk")
+
 [node name="crouch_butt" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(1013.00006, 500)
-scale = Vector2(0.1064815, 0.09169241)
-texture_normal = ExtResource("12_ukyrk")
+position = Vector2(1061, 538)
+scale = Vector2(-0.21743259, 0.21442214)
+shape = SubResource("CircleShape2D_igrcy")
 action = "shift"
 
 [node name="slide_butt" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(1014, 372.00006)
+position = Vector2(1074, 432.00003)
 scale = Vector2(0.11944444, 0.11944444)
-texture_normal = ExtResource("13_7dp3o")
+shape = SubResource("CircleShape2D_l6n3p")
 action = "slide"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/slide_butt"]
+offset_left = -527.4419
+offset_top = -535.8142
+offset_right = 552.5581
+offset_bottom = 544.1858
+texture = ExtResource("13_7dp3o")
 
 [node name="change_wea" type="TouchScreenButton" parent="CanvasLayer"]
 visible = false
