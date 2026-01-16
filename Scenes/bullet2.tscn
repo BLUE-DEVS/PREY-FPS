@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://7bkvwcrabf61"]
+
+[ext_resource type="Script" uid="uid://bcac6s44clhr4" path="res://Scenes/bullet_2.gd" id="1_717uw"]
+[ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="2_r8bci"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rtl8c"]
+size = Vector3(0.1, 0.1, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7oki"]
+albedo_color = Color(0.80131954, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.98, 0, 0, 1)
+emission_energy_multiplier = 9.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_v8qja"]
+material = SubResource("StandardMaterial3D_v7oki")
+size = Vector3(0.1, 0.1, 0.4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_717uw"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -9, 0)
+scale_min = 0.5
+scale_max = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lhaa"]
+albedo_color = Color(0.30692267, 0.3069227, 0.3069227, 1)
+metallic = 1.0
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.87, 0.6604751, 0.13049997, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_r8bci"]
+material = SubResource("StandardMaterial3D_6lhaa")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="bullet2" type="Area3D"]
+script = ExtResource("1_717uw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 0, 0, 0)
+shape = SubResource("BoxShape3D_rtl8c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 0, 0, 0)
+mesh = SubResource("BoxMesh_v8qja")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_r8bci")
+volume_db = 23.58
+pitch_scale = 4.0
+
+[node name="hit_par" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016937613, -0.26950258)
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_717uw")
+draw_pass_1 = SubResource("BoxMesh_r8bci")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

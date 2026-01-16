@@ -20,7 +20,7 @@ var current_hand_state = hand_state.blank
 @onready var smg: Node3D = $"neck/Assault Rifle"
 var is_reloading:bool=false
 @onready var bgm: AudioStreamPlayer = $"../bgm"
-
+var bullet=preload("res://Scenes/bullet2.tscn")
 
 #bhai thode audios add kr dena plz
 
@@ -231,10 +231,10 @@ func _on_shoot_butt_pressed() -> void:
 		$"CanvasLayer/shot sound".play()
 		ani2.current_animation = "shot"
 		await ani.animation_finished
-
-
-
-
+		var _bull_scene = bullet.instantiate()
+		add_child(_bull_scene)
+		_bull_scene.global_position = $"neck/plasma gun".global_position
+		_bull_scene.transform.basis = $"neck".transform.basis 
 
 func _reload():
 	is_reloading = true

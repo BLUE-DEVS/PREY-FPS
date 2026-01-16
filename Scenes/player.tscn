@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://bhyy1tss0bs0i" path="res://ui_elements/ui_sound_effects/Rollin at 5 - Kevin Macleod.mp3" id="6_3smsa"]
 [ext_resource type="Texture2D" uid="uid://pincucfsgrwq" path="res://ui_elements/quit_match.png" id="6_8erm5"]
 [ext_resource type="AudioStream" uid="uid://6b81x00ntvsi" path="res://ui_elements/ui_sound_effects/keyboard-click-327728.mp3" id="7_8erm5"]
-[ext_resource type="Texture2D" uid="uid://7b7iue2gj1jy" path="res://ui_elements/shoot button.png" id="9_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://ewp047up120i" path="res://ui_elements/jump icon.png" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
@@ -95,19 +94,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qeybu")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqcod"]
+radius = 223.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fs7ks"]
 bg_color = Color(0.5132329, 0.51323295, 0.51323277, 0.3372549)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 12
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6n3p"]
 bg_color = Color(0.2338334, 0.61, 0, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -850,9 +852,9 @@ volume_db = -15.035
 parameters/looping = false
 
 [node name="shoot_butt" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(810.00006, 284)
+position = Vector2(947.00006, 473)
 scale = Vector2(0.28240737, 0.30275553)
-texture_normal = ExtResource("9_f1ek2")
+shape = SubResource("CircleShape2D_qqcod")
 action = "shoot"
 
 [node name="jump_butt" type="TouchScreenButton" parent="CanvasLayer"]
@@ -901,13 +903,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -265.0
+offset_left = -224.0
 offset_top = -58.0
-offset_right = 146.0
+offset_right = 187.0
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.47, 1.47)
+scale = Vector2(1.2, 1.2)
 theme_override_colors/font_color = Color(0.91228896, 0.91228884, 0.91228914, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -915,7 +917,6 @@ theme_override_fonts/font = ExtResource("18_igrcy")
 theme_override_styles/background = SubResource("StyleBoxFlat_fs7ks")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l6n3p")
 value = 100.0
-fill_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
