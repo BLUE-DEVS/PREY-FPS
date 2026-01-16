@@ -54,15 +54,6 @@ func _physics_process(_delta: float) -> void:
 		_style.bg_color = Color.GREEN
 		$CanvasLayer/health_bar.add_theme_stylebox_override("fill", _style)
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 #This is working but it erritates a bit.
 				#⬇⬇⬇
 	#if Input.is_action_pressed("shoot"):
