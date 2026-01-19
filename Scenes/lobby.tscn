@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://b7scace3gmi38"]
+[gd_scene load_steps=15 format=4 uid="uid://b7scace3gmi38"]
 
 [ext_resource type="PackedScene" uid="uid://thkrcxofev2k" path="res://Scenes/player.tscn" id="1_nvaej"]
 [ext_resource type="PackedScene" uid="uid://n5rsl2hjyxny" path="res://Scenes/enemy_idk.tscn" id="4_avk8s"]
 [ext_resource type="Texture2D" uid="uid://bqvji4ywotxtp" path="res://addons/Textures of ground/red/texture_01.png" id="4_ruji2"]
 [ext_resource type="AudioStream" uid="uid://eqdmssmnyfk4" path="res://Others/DRIVE(chosic.com).mp3" id="5_jigxi"]
 [ext_resource type="Texture2D" uid="uid://dfaciceeg6bbg" path="res://3d models/us_map_Prototype_Grid_Gray_10-512x512.png" id="5_ruji2"]
+[ext_resource type="ArrayOccluder3D" uid="uid://cqa16enlhgsgj" path="res://Scenes/lobby1.occ" id="6_jigxi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_avk8s"]
 
@@ -186,6 +187,9 @@ collision_layer = 65
 collision_mask = 65
 size = Vector3(8, 1, 5.815)
 material = SubResource("StandardMaterial3D_4233d")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("6_jigxi")
 
 [connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
 
