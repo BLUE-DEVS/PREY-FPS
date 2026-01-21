@@ -18,7 +18,6 @@ sky = SubResource("Sky_ruji2")
 sky_rotation = Vector3(0, 0.49741885, -0.034906585)
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_density = 0.005
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0g1d"]

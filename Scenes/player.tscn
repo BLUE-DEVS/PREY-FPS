@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
 [ext_resource type="Texture2D" uid="uid://e72mnwxm3y8t" path="res://addons/Textures of ground/purple/texture_01.png" id="16_igrcy"]
 [ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="17_qqcod"]
-[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://Others/Anton-Regular.ttf" id="18_igrcy"]
+[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://ui_elements/fonts/Anton-Regular.ttf" id="18_igrcy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
