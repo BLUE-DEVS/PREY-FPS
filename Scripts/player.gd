@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
+var haha:int = 0
 @onready var ani2: AnimationPlayer = $AnimationPlayer2
 var ded:bool=false
-enum hand_state {blank,with_plasma,with_smg}
+enum hand_state {blank,with_plasma}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
 var neck_x := 0.0
 var SPEED :float= 13
@@ -17,7 +18,6 @@ var slide_sp:int=17
 var _crouching :bool 
 var can_wall_jump :bool= true
 var current_hand_state = hand_state.blank
-@onready var smg: Node3D = $"neck/Assault Rifle"
 var is_reloading:bool=false
 @onready var bgm: AudioStreamPlayer = $"../bgm"
 var bullet=preload("res://Scenes/bullet2.tscn")
@@ -31,7 +31,7 @@ func _ready() -> void:
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
-	current_hand_state = hand_state.with_plasma
+	current_hand_state = hand_state.blank
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if _event is InputEventScreenDrag:
@@ -53,9 +53,7 @@ func _physics_process(_delta: float) -> void:
 		var _style = $CanvasLayer/health_bar.get_theme_stylebox("fill").duplicate()
 		_style.bg_color = Color.GREEN
 		$CanvasLayer/health_bar.add_theme_stylebox_override("fill", _style)
-	
-#This is working but it erritates a bit.
-				#⬇⬇⬇
+
 	#if Input.is_action_pressed("shoot"):
 		#if not is_reloading:
 			#if shoot_dec.is_colliding():
@@ -73,21 +71,26 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("slide") and Input.is_action_pressed("w") and is_on_floor() and not sliding:
 		slide()
 
+
 	if current_hand_state == hand_state.with_plasma:
-		smg.hide()
+		SPEED = 10
+		$BlackHandPngPhoto.hide()
+		$SmgSmgSmgPng.show()
+		$"neck/plasma gun".show()
 		$CanvasLayer/shoot_butt.show()
 		ani.current_animation = "gun hold"
-	elif current_hand_state == hand_state.with_smg:
-		smg.show()
-		$"neck/plasma gun".hide()
-		ani.current_animation = "gun hold"
-		$CanvasLayer/shoot_butt.show()
-	else:
-		smg.hide()
+		if Input.is_action_pressed("w"):
+			ani.current_animation = "gun hold"
+	if current_hand_state == hand_state.blank:
+		SPEED = 13
+		$BlackHandPngPhoto.show()
+		$SmgSmgSmgPng.hide()
 		$"neck/plasma gun".hide()
 		$CanvasLayer/shoot_butt.hide()
 		if Input.is_action_pressed("w"):
 			ani.current_animation = "run"
+		else:
+			ani.current_animation = "idle"
 
 	if sliding:
 		sliding_time -= _delta
@@ -109,11 +112,11 @@ func _physics_process(_delta: float) -> void:
 			head.position.y = 0
 
 
-	if Input.is_action_pressed("w"):
+	if Input.is_action_pressed("w") and current_hand_state == hand_state.blank:
 		var _tween = get_tree().create_tween()
 		_tween.tween_property($neck/Camera3D,"fov",90,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	if Input.is_action_just_released("w"):
+	if Input.is_action_just_released("w") and current_hand_state == hand_state.blank:
 		var _tween = get_tree().create_tween()
 		_tween.tween_property($neck/Camera3D,"fov",75,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		ani.current_animation = "idle"
@@ -144,8 +147,6 @@ func _physics_process(_delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-
-
 
 
 func slide():
@@ -242,10 +243,18 @@ func die():
 	ded = true
 
 
-func _on_timer_timeout() -> void:
-	pass # Replace with function body.
-	
-
 func change_bgm_vol():
 	var _vol = randi_range(-29,-9)
 	bgm.volume_db = _vol
+
+
+func _on_change_wea_pressed() -> void:
+	haha += 1
+	if haha%2 == 0:
+		current_hand_state = hand_state.blank
+	if haha%2 != 0:
+		current_hand_state = hand_state.with_plasma
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

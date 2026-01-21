@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://thkrcxofev2k"]
+[gd_scene load_steps=46 format=4 uid="uid://thkrcxofev2k"]
 
 [ext_resource type="Script" uid="uid://dfenla2pwb5ee" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://b4hg2fxrgweex" path="res://Scenes/virtual_joystick.tscn" id="1_v0iea"]
@@ -15,9 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://4wr8nhtjki8a" path="res://ui_elements/crouch icon.png" id="12_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
-[ext_resource type="Texture2D" uid="uid://e72mnwxm3y8t" path="res://addons/Textures of ground/purple/texture_01.png" id="16_igrcy"]
 [ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="17_qqcod"]
 [ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://ui_elements/fonts/Anton-Regular.ttf" id="18_igrcy"]
+[ext_resource type="Texture2D" uid="uid://cbvhnc3fjwypp" path="res://Others/kappa imagesa.png" id="18_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://bqhyaj6esjmc0" path="res://Others/Black-Hand-PNG-Photo.png" id="19_olqyp"]
+[ext_resource type="Texture2D" uid="uid://bojatixw64gko" path="res://Others/smg smg smg png.png" id="20_wpjfl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -120,6 +122,9 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olqyp"]
+radius = 66.7
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -913,13 +918,6 @@ offset_right = 552.5581
 offset_bottom = 544.1858
 texture = ExtResource("13_7dp3o")
 
-[node name="change_wea" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
-position = Vector2(962, 27.00003)
-scale = Vector2(0.0664063, 0.0664063)
-texture_normal = ExtResource("16_igrcy")
-action = "change_wea"
-
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -956,6 +954,10 @@ theme_override_styles/background = SubResource("StyleBoxFlat_fs7ks")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l6n3p")
 value = 100.0
 
+[node name="change_wea" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(1072, 90)
+shape = SubResource("CircleShape2D_olqyp")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vgqql")
@@ -967,7 +969,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_fs7ks")
 }
 
+[node name="circle image" type="Sprite2D" parent="."]
+position = Vector2(1068, 93)
+scale = Vector2(0.32314813, 0.32314813)
+texture = ExtResource("18_l6n3p")
+
+[node name="BlackHandPngPhoto" type="Sprite2D" parent="."]
+position = Vector2(1061, 91.999985)
+scale = Vector2(0.16015625, 0.16015625)
+texture = ExtResource("19_olqyp")
+
+[node name="SmgSmgSmgPng" type="Sprite2D" parent="."]
+position = Vector2(1071.0001, 115)
+scale = Vector2(0.16111116, 0.16111116)
+texture = ExtResource("20_wpjfl")
+
 [connection signal="gui_input" from="CanvasLayer/settings" to="." method="_on_texture_button_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/quit_game" to="." method="_on_quit_game_gui_input"]
 [connection signal="pressed" from="CanvasLayer/shoot_butt" to="." method="_on_shoot_butt_pressed"]
+[connection signal="pressed" from="CanvasLayer/change_wea" to="." method="_on_change_wea_pressed"]
