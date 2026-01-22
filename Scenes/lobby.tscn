@@ -46,6 +46,9 @@ sky_rotation = Vector3(0, 0.49741885, -0.034906585)
 ambient_light_color = Color(0.68204516, 0.5117844, 0.53952706, 1)
 reflected_light_source = 1
 glow_blend_mode = 1
+tonemap_mode = 2
+glow_enabled = true
+a6bbcbc640354ad
 fog_density = 0.005
 volumetric_fog_detail_spread = 5.223304
 

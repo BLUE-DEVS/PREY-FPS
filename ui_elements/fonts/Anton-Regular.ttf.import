@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cr3clbty2lox4"
-path="res://.godot/imported/Anton-Regular.ttf-f2f82112583e182dfb1df7f55ea5b180.fontdata"
+path="res://.godot/imported/Anton-Regular.ttf-678a13ec98f94c8c33be2d1e6add8a17.fontdata"
 
 [deps]
 
-source_file="res://Others/Anton-Regular.ttf"
-dest_files=["res://.godot/imported/Anton-Regular.ttf-f2f82112583e182dfb1df7f55ea5b180.fontdata"]
+source_file="res://ui_elements/fonts/Anton-Regular.ttf"
+dest_files=["res://.godot/imported/Anton-Regular.ttf-678a13ec98f94c8c33be2d1e6add8a17.fontdata"]
 
 [params]
 
