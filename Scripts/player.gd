@@ -6,8 +6,9 @@ var ded:bool=false
 enum hand_state {blank,with_plasma}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
 var neck_x := 0.0
-var SPEED :float= 13
-var JUMP_VELOCITY:int = 10
+var SPEED :float= 40
+var JUMP_VELOCITY:int = 50
+var gravity : int  = 100
 var screen_dir = Vector2.ZERO
 @onready var head: Node3D = $neck
 var sliding:bool = false
@@ -27,19 +28,20 @@ var bullet=preload("res://Scenes/bullet2.tscn")
 #------------------------------------------------------------------
 
 func _ready() -> void:
-
+	
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
 	current_hand_state = hand_state.blank
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if _event is InputEventScreenDrag:
+	if _event is InputEventMouseMotion:
 		screen_dir.y -= _event.relative.x
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
 	$CanvasLayer/health_bar.value = UnivarsalScript.ply_helath
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if UnivarsalScript.ply_helath <= 50:
 		var _style = $CanvasLayer/health_bar.get_theme_stylebox("fill").duplicate()
@@ -125,7 +127,8 @@ func _physics_process(_delta: float) -> void:
 	self.rotation.y = screen_dir.y *_delta * UnivarsalScript.sensivity
 
 	if not is_on_floor():
-		velocity += get_gravity() * _delta
+		$CanvasLayer/chances_display.text = str(UnivarsalScript.chances, "/5")
+		velocity.y -= gravity * _delta
 
 	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -199,7 +202,7 @@ func _on_quit_game_gui_input(_event: InputEvent) -> void:
 			Input.action_press("quit")
 			player_setting_unvisible()
 			player_setting_unvisible()
-			get_tree().change_scene_to_file("res://Scenes/main_ui.tscn")
+			get_tree().change_scene_to_file("res://Scenes/game_map.tscn")
 		else:
 			Input.action_release("quit")
 
@@ -239,7 +242,7 @@ func die():
 	JUMP_VELOCITY = 0 
 	ani.play("die")
 	#await ani.animation_finished
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_lobby.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/game_map.tscn")
 	ded = true
 
 
