@@ -15,7 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://cwjn7h2x4y264" path="res://Others/hands_mat21 Base Color.png" id="15_fd4e3"]
 [ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="17_qqcod"]
-[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://Others/Anton-Regular.ttf" id="18_igrcy"]
+
+[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://ui_elements/fonts/Anton-Regular.ttf" id="18_igrcy"]
+[ext_resource type="Texture2D" uid="uid://cbvhnc3fjwypp" path="res://Others/kappa imagesa.png" id="18_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://bqhyaj6esjmc0" path="res://Others/Black-Hand-PNG-Photo.png" id="19_olqyp"]
+[ext_resource type="Texture2D" uid="uid://bojatixw64gko" path="res://Others/smg smg smg png.png" id="20_wpjfl"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -896,6 +901,52 @@ theme_override_styles/background = SubResource("StyleBoxFlat_fs7ks")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l6n3p")
 value = 100.0
 
+
+[node name="chances_display" type="Label" parent="CanvasLayer"]
+offset_left = 74.0
+offset_top = 8.0
+offset_right = 157.0
+offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("19_fs7ks")
+theme_override_font_sizes/font_size = 31
+text = "/5"
+
+[node name="gamesettings" type="ColorRect" parent="CanvasLayer"]
+visible = false
+texture_filter = 2
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -335.99997
+offset_top = -208.0
+offset_right = 1776.0
+offset_bottom = 980.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.59, 0.59)
+color = Color(0.30588236, 0.30588236, 0.30588236, 0.89411765)
+
+[node name="back_button_pla" type="TextureRect" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+offset_left = 447.0
+offset_top = 198.0
+offset_right = 1131.0
+offset_bottom = 453.0
+scale = Vector2(0.315, 0.315)
+texture = ExtResource("7_igrcy")
+
+[node name="quit_game" type="TextureRect" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+offset_left = 447.0
+offset_top = 289.0
+offset_right = 1131.0
+offset_bottom = 544.0
+scale = Vector2(0.315, 0.315)
+texture = ExtResource("8_fs7ks")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vgqql")
@@ -927,3 +978,4 @@ texture = ExtResource("20_wpjfl")
 [connection signal="gui_input" from="CanvasLayer/back_button_pla" to="." method="_on_back_button_pla_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/quit_game" to="." method="_on_quit_game_gui_input"]
 [connection signal="pressed" from="CanvasLayer/shoot_butt" to="." method="_on_shoot_butt_pressed"]
+
