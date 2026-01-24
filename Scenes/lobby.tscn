@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://0pcw603dbksd" path="res://ui_elements/sliding icon.png" id="13_ky4qv"]
 [ext_resource type="Texture2D" uid="uid://e72mnwxm3y8t" path="res://addons/Textures of ground/purple/texture_01.png" id="14_uwrbo"]
 [ext_resource type="AudioStream" uid="uid://0nj84h6nyt65" path="res://Others/mixkit-sci-fi-plasma-gun-power-up-1679.wav" id="15_xbr50"]
-[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://Others/Anton-Regular.ttf" id="16_0hrcf"]
+[ext_resource type="FontFile" uid="uid://cr3clbty2lox4" path="res://ui_elements/fonts/Anton-Regular.ttf" id="16_0hrcf"]
 [ext_resource type="FontFile" uid="uid://bqu8rd8nvrigt" path="res://ui_elements/fonts/ObelixPro-cyr.ttf" id="17_hlwqh"]
 [ext_resource type="Texture2D" uid="uid://bdxf8xb1e5fe1" path="res://ui_elements/resume_button_icons(1).png" id="18_0muhr"]
 [ext_resource type="Texture2D" uid="uid://bobd5cxwpqr15" path="res://ui_elements/quit_match_button_icons(1).png" id="19_qk7mw"]
@@ -43,11 +43,10 @@ sky_material = SubResource("ProceduralSkyMaterial_avk8s")
 background_mode = 2
 sky = SubResource("Sky_ruji2")
 sky_rotation = Vector3(0, 0.49741885, -0.034906585)
-
-tonemap_mode = 2
-glow_enabled = true
 ambient_light_color = Color(0.68204516, 0.5117844, 0.53952706, 1)
 reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
 glow_blend_mode = 1
 fog_density = 0.005
 volumetric_fog_detail_spread = 5.223304
@@ -2383,6 +2382,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lavqw")
 
+[sub_resource type="Animation" id="Animation_jjrc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("airplain:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1204.4349, 138.51309, -224.66248)]
+}
+
 [sub_resource type="Animation" id="Animation_gdlty"]
 resource_name = "airplainanim1"
 length = 10.0
@@ -2397,21 +2411,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(1204.4349, 138.51309, -224.66248), Vector3(-2284.56, 138.51309, -224.66248)]
-}
-
-[sub_resource type="Animation" id="Animation_jjrc4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("airplain:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1204.4349, 138.51309, -224.66248)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pvv31"]
@@ -2453,7 +2452,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7284069, 0)
 transform = Transform3D(0.11201458, 1.8174697e-07, -5.963948, 1.6651878, 5.7277737, 0.031275645, 5.726764, -1.6654816, 0.107559726, -0.14512613, 0, -0.22501221)
 
 [node name="hand2" type="MeshInstance3D" parent="Player/neck/hands"]
-transform = Transform3D(0.50925106, 0.73460174, -0.44835472, 0.6764743, -0.6637307, -0.3191278, -0.53201914, -0.14078437, -0.83494526, 0.0042377785, 0.0118191745, -0.18261927)
+transform = Transform3D(0.50925106, 0.73460174, -0.44835475, 0.6764743, -0.6637307, -0.3191278, -0.53201914, -0.1407844, -0.83494526, 0.0042377785, 0.0118191745, -0.18261927)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_m0pa7")
 skeleton = NodePath("")
@@ -2701,7 +2700,6 @@ wait_time = 10.0
 autostart = true
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
-visible = false
 occluder = ExtResource("4_bvheq")
 
 [node name="map" type="StaticBody3D" parent="."]

@@ -6,7 +6,7 @@ var ded:bool=false
 enum hand_state {blank,with_plasma}
 @onready var shoot_dec: RayCast3D = $"neck/shoot detecter"
 var neck_x := 0.0
-var SPEED :float= 40
+var SPEED :float= 13
 var JUMP_VELOCITY:int = 50
 var gravity : int  = 100
 var screen_dir = Vector2.ZERO
@@ -15,7 +15,7 @@ var sliding:bool = false
 @onready var ani: AnimationPlayer = $AnimationPlayer
 var sliding_time:float= 0.0
 var max_sliding_time:float= 0.7
-var slide_sp:int=17
+var slide_sp:int= 25
 var _crouching :bool 
 var can_wall_jump :bool= true
 var current_hand_state = hand_state.blank
@@ -35,13 +35,12 @@ func _ready() -> void:
 	current_hand_state = hand_state.blank
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if _event is InputEventMouseMotion:
+	if _event is InputEventScreenDrag:
 		screen_dir.y -= _event.relative.x
 		screen_dir.x -= _event.relative.y
 
 func _physics_process(_delta: float) -> void:
 	$CanvasLayer/health_bar.value = UnivarsalScript.ply_helath
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if UnivarsalScript.ply_helath <= 50:
 		var _style = $CanvasLayer/health_bar.get_theme_stylebox("fill").duplicate()
@@ -75,18 +74,14 @@ func _physics_process(_delta: float) -> void:
 
 
 	if current_hand_state == hand_state.with_plasma:
-		SPEED = 10
-		$BlackHandPngPhoto.hide()
-		$SmgSmgSmgPng.show()
+		SPEED = 40
 		$"neck/plasma gun".show()
 		$CanvasLayer/shoot_butt.show()
 		ani.current_animation = "gun hold"
 		if Input.is_action_pressed("w"):
 			ani.current_animation = "gun hold"
 	if current_hand_state == hand_state.blank:
-		SPEED = 13
-		$BlackHandPngPhoto.show()
-		$SmgSmgSmgPng.hide()
+		SPEED = 45
 		$"neck/plasma gun".hide()
 		$CanvasLayer/shoot_butt.hide()
 		if Input.is_action_pressed("w"):
@@ -105,11 +100,11 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shift") and not sliding:
 		_crouching = not _crouching
 		if _crouching:
-			SPEED = 7
+			SPEED = 20
 			$CollisionShape3D.scale.y = 0.6
 			head.position.y = -0.6
 		elif  not _crouching:
-			SPEED = 13
+			SPEED = 45
 			$CollisionShape3D.scale.y = 1
 			head.position.y = 0
 
@@ -158,13 +153,13 @@ func slide():
 	var forward_dir = -global_transform.basis.z
 	velocity.x = forward_dir.x * slide_sp
 	velocity.z = forward_dir.z * slide_sp
-	JUMP_VELOCITY = 10
+	JUMP_VELOCITY = 50
 	$CollisionShape3D.scale.y -= 0.4
 	head.position.y = -0.9
 
 func end_slide():
 	sliding = false
-	JUMP_VELOCITY = 10
+	JUMP_VELOCITY = 50
 	ani.current_animation = "idle"
 	$CollisionShape3D.scale.y = 1
 	head.position.y = 0
