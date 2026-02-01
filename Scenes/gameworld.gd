@@ -28,8 +28,8 @@ func _on_teleporter_body_entered(_body: Node3D) -> void:
 			get_tree().change_scene_to_file("res://Scenes/game_map.tscn")
 
 
-func _on_airplaintime_timeout() -> void:
-	var randnum : int = randi_range(1,4)
-	if randnum == 1:
-		$airplainanimton.play("airplainanim1") 
-		$airplain/AudioStreamPlayer3D.play(2)
+#func _on_airplaintime_timeout() -> void:
+	#var randnum : int = randi_range(1,4)
+	#if randnum == 1:
+		#$airplainanimton.play("airplainanim1") 
+		#$airplain/AudioStreamPlayer3D.play(2)
